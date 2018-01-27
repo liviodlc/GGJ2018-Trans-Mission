@@ -18,18 +18,20 @@ public class AgentController : MonoBehaviour {
 
         var x = Input.GetAxis("Mouse Y") * Time.deltaTime * turnSpeed;
         var y = Input.GetAxis("Mouse X") * Time.deltaTime * turnSpeed;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+        var fwd = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+        var horiz = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
 
         transform.Rotate(0, y, 0);
-        transform.Translate(0, 0, z);
+        transform.Translate(horiz, 0, fwd);
 
         //Update camera
-        _cameraObj.transform.position = transform.position;
-        _cameraObj.transform.rotation = new Quaternion(_cameraObj.transform.rotation.x,
-                                                        transform.rotation.y,
-                                                        _cameraObj.transform.rotation.z,
-                                                        _cameraObj.transform.rotation.w);
-        _cameraObj.transform.Rotate(-x, 0, 0);
+       // _cameraObj.transform.position = transform.position;
+       // _cameraObj.transform.rotation = new Quaternion(_cameraObj.transform.rotation.x,
+       //                                                 transform.rotation.y,
+       //                                                 _cameraObj.transform.rotation.z,
+       //                                                 transform.rotation.w);
+                                                        
+       //_cameraObj.transform.Rotate(-x, 0, 0);
 	}
 
 }
