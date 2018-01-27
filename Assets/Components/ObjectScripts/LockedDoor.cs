@@ -32,6 +32,7 @@ public class LockedDoor : MonoBehaviour {
     {
         //Add number to current combination
         currentCombo += number.ToString();
+        Debug.Log("Door #" + id + ": " + currentCombo);
         //If the current combination has as many numbers as the door's combination...
         if (currentCombo.Length == combination.ToString().Length)
         {
