@@ -28,7 +28,7 @@ public class LockedDoor : MonoBehaviour {
 	}
 
     //Called whenever the player punches in a number on the keypad
-    void numberInput(int number)
+    public void numberInput(int number)
     {
         //Add number to current combination
         currentCombo += number.ToString();
