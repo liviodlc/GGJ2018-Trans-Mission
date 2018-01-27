@@ -25,13 +25,13 @@ public class AgentController : MonoBehaviour {
         transform.Translate(horiz, 0, fwd);
 
         //Update camera
-       // _cameraObj.transform.position = transform.position;
-       // _cameraObj.transform.rotation = new Quaternion(_cameraObj.transform.rotation.x,
-       //                                                 transform.rotation.y,
-       //                                                 _cameraObj.transform.rotation.z,
-       //                                                 transform.rotation.w);
-                                                        
-       //_cameraObj.transform.Rotate(-x, 0, 0);
-	}
+        _cameraObj.transform.position = transform.position;
+        //_cameraObj.transform.rotation = new Quaternion(_cameraObj.transform.rotation.x,
+        //                                                transform.rotation.y,
+        //                                                _cameraObj.transform.rotation.z,
+        //                                                transform.rotation.w);
+
+        _cameraObj.transform.Rotate(-x, y, 0);
+    }
 
 }
