@@ -10,6 +10,15 @@ public class LockedDoor : MonoBehaviour {
     //Combinantion to unlock door
     public int combination;
 
+    //How far the door should move when it opens
+    public Vector3 openOffset;
+    public float openSpeed;
+    //Acceptable distance from end point.  Recommended to be >1;
+    public float openThreshold = 10f;
+
+    private Vector3 startPos;
+    private float distToEnd { get { return Vector3.Distance(transform.position, openOffset); } }
+
     public bool isLocked = true;
 
     /*The combination that has been punched in.
@@ -19,7 +28,7 @@ public class LockedDoor : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        startPos = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +51,7 @@ public class LockedDoor : MonoBehaviour {
                 //Unlock the door
                 isLocked = false;
                 Debug.Log("Combination Correct!  Door #" + getId() + " unlocked.");
+                StartCoroutine(openDoor());
             }
             //If the combination is incorrect...
             else
@@ -50,6 +60,18 @@ public class LockedDoor : MonoBehaviour {
             }
             //Regardless, reset the current combination
             currentCombo = "";
+        }
+    }
+
+    private IEnumerator openDoor()
+    {
+        float t = 0.0f;
+
+        while(t <= 1)
+        {
+            t += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, startPos + openOffset, Mathf.SmoothStep(0,1,t));
+            yield return new WaitForFixedUpdate();
         }
     }
 

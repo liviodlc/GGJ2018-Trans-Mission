@@ -2161,6 +2161,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 51
   combination: 1234
+  openOffset: {x: 3, y: 0, z: 0}
+  openSpeed: 0
+  openThreshold: 10
   isLocked: 1
 --- !u!23 &1250773144
 MeshRenderer:

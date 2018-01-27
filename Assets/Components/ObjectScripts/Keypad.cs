@@ -27,6 +27,10 @@ public class Keypad : MonoBehaviour {
 
     void _onClick()
     {
+        //Do nothing if door is unlocked
+        if (!doorRef.isLocked)
+            return;
+
         doorRef.numberInput(num);
     }
 
