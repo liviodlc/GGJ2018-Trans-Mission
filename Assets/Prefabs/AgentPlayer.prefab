@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 114637062546203278}
   - component: {fileID: 54630751652766280}
   - component: {fileID: 114510343492321348}
+  - component: {fileID: 114887467060925282}
   m_Layer: 8
   m_Name: AgentPlayer
   m_TagString: Untagged
@@ -549,6 +550,27 @@ MonoBehaviour:
   canvas: {fileID: 1455906976093736}
   prompt: {fileID: 114314033142475784}
   testWithoutNetworking: 0
+--- !u!114 &114887467060925282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1653698695709932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b78093df9d70f48a6002b8a2374b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config:
+    category: 1
+    detectionTime: 0.5
+    minVisibilityMultiplier: 1
+    visibilityMultiplier: 1
+    canInstantlyBeDetected: 1
+    debug: 0
+  _indexingConfig:
+    indexingType: 0
+    _raycastPoints: []
 --- !u!124 &124365582845369314
 Behaviour:
   m_ObjectHideFlags: 1

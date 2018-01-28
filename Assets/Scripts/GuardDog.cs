@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Devdog.LosPro;
+using SWS;
 
 public class GuardDog : MonoBehaviour, IObserverCallbacks
 {
@@ -14,10 +15,12 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	private float timer;
 	private bool IsLooking;
 	private Transform LookTarget;
+	private navMove PathComp;
 
 	private void Start()
 	{
 		ThisNavAgent = GetComponent<NavMeshAgent>();
+		PathComp = GetComponent<navMove>();
 		OrigSpeed = ThisNavAgent.speed;
 	}
 
@@ -56,12 +59,26 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 		IsLooking = true;
 	}
 
-	public void OnDetectedTarget(SightTargetInfo info) {Debug.Log("found " + info.target.name);}
+	public void OnDetectedTarget(SightTargetInfo info)
+	{
+		Debug.Log("found " + info.target.name);
+		//StopAllCoroutines();
+		//PathComp.Stop();
+		PathComp.enabled = false;
+		//ThisNavAgent.isStopped = true;
+		//ThisNavAgent.ResetPath();
+		ThisNavAgent.SetDestination(info.target.transform.position);
+	}
+
+	public void OnUnDetectedTarget(SightTargetInfo info)
+	{
+		Debug.Log("can't see " + info.target.name);
+	}
+
 	public void OnTargetCameIntoRange(SightTargetInfo info) { Debug.Log(info.target.name + "is in range"); }
 	public void OnTargetWentOutOfRange(SightTargetInfo info) { Debug.Log(info.target.name + "is out of range"); }
 	public void OnTargetDestroyed(SightTargetInfo info) {}
 	public void OnTryingToDetectTarget(SightTargetInfo info) {}
 	public void OnDetectingTarget(SightTargetInfo info) {}
 	public void OnStopDetectingTarget(SightTargetInfo info) {}
-	public void OnUnDetectedTarget(SightTargetInfo info){ Debug.Log("can't see " + info.target.name); }
 }
