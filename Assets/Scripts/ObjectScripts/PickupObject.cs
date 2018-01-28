@@ -33,8 +33,6 @@ public class PickupObject : InteractiveObject {
             transform.position = IC.player.transform.position;
             transform.localPosition = offest;
             isHeld = true;
-            IC.player.DeselectInteractiveObject(this);
-            IC.player.SelectInteractiveObject(this);
             verb = "Drop";
         }
         else
