@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour {
+public class toCharReturn : MonoBehaviour {
 
 	public void char_select()
 	{
 		//StartCoroutine (5);
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
-	}
-
-	public void quit_game()
-	{
-		Application.Quit ();
+		SceneManager.LoadScene(1);
 	}
 
 }
