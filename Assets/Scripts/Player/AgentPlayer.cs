@@ -28,7 +28,7 @@ public class AgentPlayer : NetworkBehaviour
 
 	private void Start()
 	{
-		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Server || testWithoutNetworking;
+		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Client || testWithoutNetworking;
 		cam.gameObject.SetActive(isPlayerAgent);
 
 		if (isPlayerAgent)

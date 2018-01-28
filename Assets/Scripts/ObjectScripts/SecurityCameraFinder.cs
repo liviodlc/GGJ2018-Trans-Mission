@@ -1,47 +1,109 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SecurityCameraFinder : Singleton<MonoBehaviour> {
 
+	public RenderTexture securityCameraRenderTexture;
+	private SecurityCamera[] cameraArray;
+	
+	private int cameraArraySize;
 
-	private Dictionary<int, SecurityCamera> cameraList; 
+	private int currentCameraFeed = 0;
 
 	// Use this for initialization
 	void Start ()
 	{
-		// GetAllCameras();
-		// foreach( var cam in cameraList.Keys)
-		// {
-		// 	Debug.Log("Camera id : " + cameraList[cam].Id);
-		// }
+		GetAllCameras();
+	}
 
-		// Debug.Log("Quantity of cameras:" + QuantityOfCameras());
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.A))
+		{
+			NextCamera();
+		}
+
+		if(Input.GetKeyDown(KeyCode.S))
+		{
+			PreviousCamera();
+		}
 	}
 	
 	public void GetAllCameras()
 	{
-		cameraList = new Dictionary<int, SecurityCamera>();
+		// gets list of all cameras
 		var list = GameObject.FindObjectsOfType<SecurityCamera>();
 
-		foreach( var cam in list)
+		// creates dictinary of cameras based on id
+		// so we can organize it
+		var dic = new Dictionary<int, SecurityCamera>();
+
+		cameraArraySize = list.Length;
+
+		// ordered camera id list 
+		int[] cameraIds = new int[cameraArraySize];
+
+		int k = 0;
+		// build dictonary of cameras with ids as keys
+		foreach(var cam in list)
 		{
-			cameraList.Add(cam.Id, cam);
+			dic.Add(cam.Id, cam);
+			cameraIds[k++] = cam.Id;
 		}
+
+		// sort cameras by ids
+		Array.Sort(cameraIds);
+
+
+
+		// init array 
+		cameraArray = new SecurityCamera[cameraArraySize];
+		for(int i = 0; i < cameraArraySize; i++)
+		{
+			cameraArray[i] = dic[cameraIds[i]];
+		}
+
+		currentCameraFeed = 0;
+		
+		cameraArray[0].SetCameraTargetTexture(securityCameraRenderTexture);
 	}
 
 	public int QuantityOfCameras()
 	{
-		return cameraList.Count;
+		return cameraArraySize;
 	}
 
-	public int GetCameraFeed(int id)
+	public RenderTexture GetCameraFeedRenderTexture()
 	{
-		if(cameraList.ContainsKey(id))
+		return securityCameraRenderTexture;
+	}
+
+	public void NextCamera()
+	{
+		cameraArray[currentCameraFeed].SetCameraTargetTexture(null);
+
+		currentCameraFeed++;
+		if(currentCameraFeed >= cameraArraySize)
 		{
-			Debug.LogError("No camera with Id:" + id);
+			currentCameraFeed = 0;
 		}
 
-		return cameraList[id].Id; 
+		cameraArray[currentCameraFeed].SetCameraTargetTexture(securityCameraRenderTexture);
 	}
+
+	public void PreviousCamera()
+	{
+		cameraArray[currentCameraFeed].SetCameraTargetTexture(null);
+		
+		currentCameraFeed--;
+		if(currentCameraFeed < 0)
+		{
+			currentCameraFeed = cameraArraySize - 1;
+		}
+
+		cameraArray[currentCameraFeed].SetCameraTargetTexture(securityCameraRenderTexture);
+	}
+
 }

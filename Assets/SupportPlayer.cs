@@ -8,7 +8,7 @@ public class SupportPlayer : NetworkBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		if(GameManager.Instance.playerMode == GameManager.PlayerMode.Client)
+		if(GameManager.Instance.playerMode == GameManager.PlayerMode.Server)
 		{
 			Debug.Log("enable camera");
 			// disable support player camera
