@@ -2160,7 +2160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1655799043791544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.008, y: 0.100728616, z: 0.76392585}
+  m_LocalPosition: {x: 6.126772, y: 0.100728616, z: 1.5091057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4327157077432302}
@@ -8019,12 +8019,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1655799043791544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8906edfff32c9e748a88878ee4797519, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ea0142e7e7099d4a810a121699ee669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   doorRef: {fileID: 0}
-  keypadRef: {fileID: 1655799043791544}
-  symbolList: {fileID: 4900000, guid: a8048e859d93c964895a6ad9761b879a, type: 3}
+  keypadRef: {fileID: 0}
+  symbolList: {fileID: 4900000, guid: 6987f7baff459214a8a93838f115c388, type: 3}
 --- !u!114 &114757655095324264
 MonoBehaviour:
   m_ObjectHideFlags: 1
