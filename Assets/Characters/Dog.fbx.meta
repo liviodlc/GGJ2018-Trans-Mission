@@ -1,0 +1,219 @@
+fileFormatVersion: 2
+guid: bc3d201bc9cd48b4b8927c48d78df6af
+timeCreated: 1517141380
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Base
+    100004: Body
+    100006: //RootNode
+    100008: Dog
+    100010: Ear.L
+    100012: Ear.L_end
+    100014: Ear.R
+    100016: Ear.R_end
+    100018: foot.L
+    100020: foot.R
+    100022: front_foot.L
+    100024: front_foot.R
+    100026: front_shin.L
+    100028: front_shin.R
+    100030: front_thigh.L
+    100032: front_thigh.R
+    100034: front_toe.L
+    100036: front_toe.L_end
+    100038: front_toe.R
+    100040: front_toe.R_end
+    100042: Head
+    100044: Hips
+    100046: Jaw
+    100048: Nose
+    100050: Nose_end
+    100052: shin.L
+    100054: shin.R
+    100056: Shoulder.L
+    100058: Shoulder.R
+    100060: Spine.007
+    100062: Spine.008
+    100064: Spine.009
+    100066: Spine.010
+    100068: Spine.011
+    100070: Tail
+    100072: Tail.001
+    100074: Tail.001_end
+    100076: Tail.002
+    100078: Tail.003
+    100080: Tail.004
+    100082: Tail.005
+    100084: thigh.L
+    100086: thigh.R
+    100088: toe.L
+    100090: toe.L_end
+    100092: toe.R
+    100094: toe.R_end
+    100096: Tounge.000
+    100098: Tounge.001
+    100100: Tounge.002
+    100102: Tounge.002_end
+    400000: Armature
+    400002: Base
+    400004: Body
+    400006: Dog
+    400008: //RootNode
+    400010: Ear.L
+    400012: Ear.L_end
+    400014: Ear.R
+    400016: Ear.R_end
+    400018: foot.L
+    400020: foot.R
+    400022: front_foot.L
+    400024: front_foot.R
+    400026: front_shin.L
+    400028: front_shin.R
+    400030: front_thigh.L
+    400032: front_thigh.R
+    400034: front_toe.L
+    400036: front_toe.L_end
+    400038: front_toe.R
+    400040: front_toe.R_end
+    400042: Head
+    400044: Hips
+    400046: Jaw
+    400048: Nose
+    400050: Nose_end
+    400052: shin.L
+    400054: shin.R
+    400056: Shoulder.L
+    400058: Shoulder.R
+    400060: Spine.007
+    400062: Spine.008
+    400064: Spine.009
+    400066: Spine.010
+    400068: Spine.011
+    400070: Tail
+    400072: Tail.001
+    400074: Tail.001_end
+    400076: Tail.002
+    400078: Tail.003
+    400080: Tail.004
+    400082: Tail.005
+    400084: thigh.L
+    400086: thigh.R
+    400088: toe.L
+    400090: toe.L_end
+    400092: toe.R
+    400094: toe.R_end
+    400096: Tounge.000
+    400098: Tounge.001
+    400100: Tounge.002
+    400102: Tounge.002_end
+    2100000: DogFur
+    2100002: DogNose
+    2100004: Mouth
+    2100006: Tounge
+    2100008: EyeWhite
+    2100010: EyePupil
+    2100012: EyeIris
+    4300000: Dog
+    7400000: T-Pose
+    7400002: Walk
+    7400004: Sniff
+    7400006: Sit
+    7400008: Stand
+    7400010: Wag_Standing
+    7400012: Bark_Standing
+    7400014: HeadClosed Mouth
+    7400016: HeadLook
+    7400018: Armature|Bark_Standing
+    7400020: Armature|HeadClosed Mouth
+    7400022: Armature|HeadLook
+    7400024: Armature|Sit
+    7400026: Armature|Sniff
+    7400028: Armature|Stand
+    7400030: Armature|T-Pose
+    7400032: Armature|Wag_Standing
+    7400034: Armature|Walk
+    9500000: //RootNode
+    13700000: Dog
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
