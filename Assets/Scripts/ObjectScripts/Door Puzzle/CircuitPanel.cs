@@ -12,5 +12,6 @@ public class CircuitPanel : InteractiveObject
 		rb.isKinematic = false;
 		gameObject.SetActive(false);
 		nextTrigger.SetActive(true);
+		GetComponent<BoxCollider>().enabled = false;
 	}
 }

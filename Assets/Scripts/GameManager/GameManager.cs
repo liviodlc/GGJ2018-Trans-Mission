@@ -11,7 +11,23 @@ public class GameManager : MonoBehaviour {
     [Header("Game Settings")]
 	public PlayerMode playerMode;
 
-    public static GameManager Instance;
+    public static GameManager Instance
+    {
+        get 
+        {
+            if(_instance == null)
+            {
+                // GameObject singleton = new GameObject();
+				// _instance = singleton.AddComponent<GameManager>();
+				// singleton.name = "(singleton) "+ typeof(GameManager).ToString();
+                Debug.LogError("GameManager is null");
+            }
+
+            return _instance;
+        }
+    }
+
+    private static GameManager _instance;
 
     void Start()
     {
@@ -22,7 +38,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        Instance = this;        
+        _instance = this;        
         DontDestroyOnLoad(this);
     }
 }

@@ -56,8 +56,6 @@ public class SecurityCameraFinder : Singleton<MonoBehaviour> {
 		// sort cameras by ids
 		Array.Sort(cameraIds);
 
-
-
 		// init array 
 		cameraArray = new SecurityCamera[cameraArraySize];
 		for(int i = 0; i < cameraArraySize; i++)
