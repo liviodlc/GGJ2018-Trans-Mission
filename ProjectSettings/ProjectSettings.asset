@@ -634,9 +634,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: dc9dcdbf-c4d4-4cc7-a476-ff879a72c22e
+  cloudProjectId: 87461880-2744-45f2-9177-6c22d4d46b09
   projectName: GGJ2018-Trans-Mission
-  organizationId: diamercy
+  organizationId: livio-de-la-cruz-llc
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

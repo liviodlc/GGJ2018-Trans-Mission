@@ -14,25 +14,17 @@ public class AgentPlayer : NetworkBehaviour
 
 	private float turn = 0;
 	private float nod = 0;
+	private bool isPlayerAgent = false;
 
 	private void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 
-		if(GameManager.Instance.playerMode == GameManager.PlayerMode.Server)
-		{
-			
-			// disable support player camera
-			var camera = transform.GetComponentInChildren<Camera>();
-			camera.enabled = true;
-
-			// set initial position;
-			//var initialPos = GameObject.Find("AgentStartingPosition");
-			//transform.position = initialPos.transform.position;
-		}
-
+		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Server;
+		cam.gameObject.SetActive(isPlayerAgent);
 	}
 
+	[ClientCallback]
 	private void FixedUpdate()
 	{
 		turn += Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;

@@ -1,102 +1,221 @@
-﻿using System.Collections;
+﻿using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.Networking.NetworkSystem;
-using UnityEngine.SceneManagement;
 
 public class NetManager : NetworkManager 
 {
-	public GameObject AgentPlayer;
-	public GameObject SupportPlayer;
+	[Header("Player Prefabs")]
+	public GameObject ServerPlayer;
+	public GameObject ClientPlayer;
 
-    private NetLocalDiscovery localDiscovery;
+	[Header("Match Making Settings")]
+	
+	public int maxJoinAttempts;
+	public uint maxPlayers;
+	public uint roomNameLength;
 
-	private bool foundLocalGame;
-	private static NetManager instance;
+	private int joinAttemptCount;
+	public string roomName;
+	private bool hasCreatedRoom;
+	private MatchInfo newMatchInfo;
 
-	void Start()
+	public string RoomName
 	{
-		if(instance != null)
+		get 
 		{
-			Destroy(gameObject);
+			if(!hasCreatedRoom)
+				return "";
+
+			return roomName;
+		}
+	}
+
+	private List<string> previousRoomNameAttempts;
+
+	void Start () {
+		previousRoomNameAttempts = new List<string>();
+		joinAttemptCount = 0;
+
+		if(maxJoinAttempts <= 0)
+		{
+			Debug.LogWarning("MaxJoinAttempts in CustomNetworkManager was invalid. Setting it to 5");
+			maxJoinAttempts = 5;
+		}
+
+		if(maxPlayers <= 1)
+		{
+			Debug.LogWarning("MaxNumberOfPlayers in CustomNetworkManager was invalid. Setting it to 5");
+			maxPlayers = 2;
+		}
+
+		if(roomNameLength <= 3)
+		{
+			Debug.LogWarning("roomNameLength in CustomNetworkManager was invalid. Setting it to 4");
+			roomNameLength = 4;
+		}
+
+		ClientScene.RegisterPrefab(ServerPlayer);
+		ClientScene.RegisterPrefab(ClientPlayer);
+	}
+
+	public void CreateNewRoom()
+	{
+		if(NetworkManager.singleton.matchMaker == null)
+		{
+			NetworkManager.singleton.StartMatchMaker();
+		}		
+
+		joinAttemptCount++;
+
+		if(joinAttemptCount > maxJoinAttempts)
+		{
+			Debug.LogError("Unable to find an available room name");
 			return;
 		}
+		
+		// generate match name
+		roomName = GenerateMatchName(roomNameLength);
 
-		instance = this;
-		DontDestroyOnLoad(this);
-
-		foundLocalGame = false;
-
-		ClientScene.RegisterPrefab(AgentPlayer);
-		ClientScene.RegisterPrefab(SupportPlayer);
-
-		StartCoroutine(RetrieveNetLocalDiscovery());
+		// search if match name already exists
+		// Callback function takes care of creating match
+		// or calling this function again in case a match with the same name already exists
+		NetworkManager.singleton.matchMaker.ListMatches(0, 10, roomName, false, 0,0, CreateNewMatchIfNotExists);
 	}
 
-	public void StartNetworkSession()
+	public void JoinHostRoom()
 	{
-		Debug.Log("Starting Network session...");
-		StartCoroutine(StartNetworkSessionRoutine());
+        MatchInfo hostInfo = newMatchInfo;
+        NetworkServer.Listen(hostInfo, 9000);
+        NetworkManager.singleton.StartHost(hostInfo);
 	}
 
-	private IEnumerator StartNetworkSessionRoutine()
+	public void JoinExistingRoom(string existingRoom)
 	{
-		while(localDiscovery == null)
+		if(NetworkManager.singleton.matchMaker == null)
 		{
-			Debug.Log("StartNetworkSession - Waiting for local net discovery");
-			yield return new WaitForSeconds(1f);
-		}
+			NetworkManager.singleton.StartMatchMaker();
+		}	
 
-		Debug.Log("Init as as Server");
-		localDiscovery.InitAsServer();
-		NetworkManager.singleton.StartHost();
+		roomName = existingRoom;
+		Debug.Log("Trying to join match :" + existingRoom);
+		// search for match with specific name
+		 NetworkManager.singleton.matchMaker.ListMatches(0, 10, existingRoom, true, 0, 0, JoinMatchIfExists);
+
 	}
 
-	public void JoinNetworkSession()
-	{
-		Debug.Log("Joining game at... [" + NetworkManager.singleton.networkAddress+"]");
-		NetworkManager.singleton.StartClient();	
-	}
-	
-	private IEnumerator RetrieveNetLocalDiscovery()
-	{
-		while(localDiscovery == null)
+	#region Create New Match Functions
+	private void CreateNewMatchIfNotExists(bool success, string extendedInfo, List<MatchInfoSnapshot> matches)
+    {
+
+		if(success)
 		{
-			localDiscovery = GameObject.FindObjectOfType<NetLocalDiscovery>();
-			yield return new WaitForSeconds(1f);
-		}
-	}
+			if(matches.Count == 0)
+			{
+				Debug.Log("Creating match");
+				NetworkManager.singleton.matchMaker.CreateMatch(roomName, maxPlayers, true, "", "", "", 0, 0, OnInternetMatchCreate);
+			}
+			else
+			{
+				Debug.Log("MatchName already in use : " + roomName + ". Trying a new one...");
 
-	public IEnumerator JoinLocalBroadcast()
-	{
-		while(localDiscovery == null)
+				string matchList = "";
+
+				foreach(var m in matches)
+				{
+					matchList += m.name + " | ";
+				}
+				previousRoomNameAttempts.Add(roomName);
+				Debug.Log("AllMatchesFound: " + matchList);
+				CreateNewRoom();
+			}
+		}
+		else 
 		{
-			Debug.Log("JoinLocalBroadcast - Waiting for local net discovery");
-			yield return new WaitForSeconds(1f);
+			Debug.LogError("Couldn't connect to match maker");
 		}
+    }
 
-		localDiscovery.InitAsClient();
+	private void OnInternetMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
+    {
+        if (success)
+        {
+            Debug.Log("Create match succeeded");
+			hasCreatedRoom = true;
+			newMatchInfo = matchInfo;
 
-		while(!foundLocalGame)
-		{
-			Debug.Log("JoinLocalBroadcast - listening for broadcast...");
-			yield return new WaitForSeconds(1f);
-		}
+			JoinHostRoom();
+        }
+        else
+        {
+            Debug.LogError("Create match failed");
+        }
+    }
 
-		JoinNetworkSession();
-	}
-
-	public void SetNetworkJoinAddress(string address)
+	private string GenerateMatchName(uint size)
 	{
-		networkAddress = address;
-		foundLocalGame = true;
+		StringBuilder value;
+		do {
+			value = new StringBuilder();
+			 // use stringbuilder if unity supports it
+			for(int i = 0; i < size; i++)
+			{
+				value.Append( System.Convert.ToChar(Random.Range(0, 24) + 65));
+			}
+			
+		} while(previousRoomNameAttempts.Contains(value.ToString()));
+
+		return value.ToString();
+
 	}
+	#endregion Create New Match Functions
+
+	#region Join Existing Match
+	private void JoinMatchIfExists(bool success, string extendedInfo, List<MatchInfoSnapshot> matches)
+    {
+        if (success) 
+        {
+            if (matches.Count != 0)
+            {
+                Debug.Log("A list of matches was returned");
+
+                //join the last server (just in case there are two...)
+                NetworkManager.singleton.matchMaker.JoinMatch(matches[matches.Count - 1].networkId, "", "", "", 0, 0, OnJoinInternetMatch);
+            }
+            else
+            {
+                Debug.Log("No matches in requested room!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Couldn't connect to match maker");
+        }
+    }
+
+	private void OnJoinInternetMatch(bool success, string extendedInfo, MatchInfo matchInfo)
+    {
+        if (success)
+        {
+            Debug.Log("Able to join a match");
+            MatchInfo hostInfo = matchInfo;
+            NetworkManager.singleton.StartClient(hostInfo);
+        }
+        else
+        {
+            Debug.LogError("Join match failed");
+        }
+    }
+	#endregion Join Existing Match
 
 	#region Spawn Network Player
 	public override void OnClientConnect(NetworkConnection conn)
 	{
+		//VRMonitorHUD.SetRoomName(roomName);
+
 		if (!clientLoadedScene)
         {
 			StringMessage msg = new StringMessage(GameManager.Instance.playerMode.ToString());
@@ -123,36 +242,29 @@ public class NetManager : NetworkManager
         }
         if (addPlayer)
         {
-			Debug.Log("adding player...");
-
-			if(GameManager.Instance == null)
-			{
-				Debug.LogError("GameManager singleton is null!");
-			}
-			var playerMode = GameManager.Instance.playerMode.ToString();
-			StringMessage msg = new StringMessage(playerMode);
+			StringMessage msg = new StringMessage(GameManager.Instance.playerMode.ToString());
             ClientScene.AddPlayer(conn, 0, msg);
         }
-    }
-
-	void OnConnectedToServer() 
-	{
-        Debug.Log("Connected to server");
     }
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
 	{
 		string msg = extraMessageReader.ReadMessage<StringMessage>().value;
-
-		var playerPrefab = GetNetworkPlayer(msg);
-		var player = (GameObject)GameObject.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-		Debug.LogWarning("Adding player");
-		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+		
+		if(msg == GameManager.PlayerMode.Server.ToString())
+		{
+			var player = (GameObject)GameObject.Instantiate(ServerPlayer, Vector3.zero, Quaternion.identity);
+			NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+		}
+		else if(msg == GameManager.PlayerMode.Client.ToString()) {
+			var player = (GameObject)GameObject.Instantiate(ClientPlayer
+	, Vector3.zero, Quaternion.identity);
+			NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+		}
+		else 
+		{
+			Debug.Log("Invalid PlayerMode : " + GameManager.Instance.playerMode);
+		}
 	}
-
-	public GameObject GetNetworkPlayer(string playerModeStr)
-	{
-		return (playerModeStr == GameManager.PlayerMode.Server.ToString()) ? AgentPlayer : SupportPlayer;
-	}
-	#endregion Spawn Network Player (VR or Mobile)
+	#endregion Spawn Network Player
 }
