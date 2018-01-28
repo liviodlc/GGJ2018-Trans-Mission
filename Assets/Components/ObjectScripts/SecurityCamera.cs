@@ -16,9 +16,17 @@ public class SecurityCamera : MonoBehaviour {
 	public float delay = 1;
 
 	private bool isReverse;
+	private Transform rotationBody;
 
 	void Start()
 	{
+		rotationBody = transform.Find("CameraBody");
+		if(rotationBody == null)
+		{
+			Debug.LogError("No object found with the name 'CameraBody'");
+			return;
+		}
+
 		StartMovement();
 	}
 	
@@ -37,7 +45,7 @@ public class SecurityCamera : MonoBehaviour {
         while(t <= 1)
         {
             t += Time.deltaTime/duration;
-            transform.rotation = Quaternion.Euler(Vector3.Lerp(start, end, Mathf.SmoothStep(0,1,t)));
+            rotationBody.rotation = Quaternion.Euler(Vector3.Lerp(start, end, Mathf.SmoothStep(0,1,t)));
             yield return new WaitForFixedUpdate();
         }
 
