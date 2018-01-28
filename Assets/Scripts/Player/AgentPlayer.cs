@@ -12,7 +12,6 @@ public class AgentPlayer : NetworkBehaviour
 	[Header("References")]
 	public Transform cam;
 	public Rigidbody rb;
-	public GameObject canvas;
 	public TMPro.TextMeshProUGUI prompt;
 
 	[Header("Debug")]
@@ -55,12 +54,19 @@ public class AgentPlayer : NetworkBehaviour
 		wasActionDown = isActionDown;
 	}
 
-	public void SetInteractiveObject(InteractiveObject target)
+	public void SelectInteractiveObject(InteractiveObject target)
 	{
 		hoveringObject = target;
-		canvas.SetActive(target != null);
-		if (target)
-			prompt.text = target.verb;
+		prompt.gameObject.SetActive(true);
+		prompt.text = target.verb;
+	}
+
+	public void DeselectInteractiveObject(InteractiveObject target)
+	{
+		if (hoveringObject != target)
+			return;
+		hoveringObject = null;
+		prompt.gameObject.SetActive(false);
 	}
 
 	private void Interact()
