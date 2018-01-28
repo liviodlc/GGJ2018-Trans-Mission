@@ -14,3 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/char_select.unity
     guid: 4452be69a0ae144ebac03a58883fafe2
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: fa1b8074538fc664ab2bdacf2680954c

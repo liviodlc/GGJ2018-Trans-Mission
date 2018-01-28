@@ -10,4 +10,9 @@ public class GameManager : Singleton<GameManager> {
     //public bool DebugMode = false;
     [Header("Game Settings")]
 	public PlayerMode playerMode;
+
+    void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
 }

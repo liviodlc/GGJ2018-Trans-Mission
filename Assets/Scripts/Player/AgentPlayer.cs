@@ -25,6 +25,10 @@ public class AgentPlayer : NetworkBehaviour
 			// disable support player camera
 			var camera = transform.GetComponentInChildren<Camera>();
 			camera.enabled = true;
+
+			// set initial position;
+			//var initialPos = GameObject.Find("AgentStartingPosition");
+			//transform.position = initialPos.transform.position;
 		}
 
 	}

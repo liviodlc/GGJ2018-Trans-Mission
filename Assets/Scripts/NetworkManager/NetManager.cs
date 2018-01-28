@@ -123,7 +123,14 @@ public class NetManager : NetworkManager
         }
         if (addPlayer)
         {
-			StringMessage msg = new StringMessage(GameManager.Instance.playerMode.ToString());
+			Debug.Log("adding player...");
+
+			if(GameManager.Instance == null)
+			{
+				Debug.LogError("GameManager singleton is null!");
+			}
+			var playerMode = GameManager.Instance.playerMode.ToString();
+			StringMessage msg = new StringMessage(playerMode);
             ClientScene.AddPlayer(conn, 0, msg);
         }
     }
@@ -139,6 +146,7 @@ public class NetManager : NetworkManager
 
 		var playerPrefab = GetNetworkPlayer(msg);
 		var player = (GameObject)GameObject.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+		Debug.LogWarning("Adding player");
 		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 	}
 
