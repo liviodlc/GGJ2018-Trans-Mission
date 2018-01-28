@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4283896435559260}
   - component: {fileID: 114422321697992172}
   - component: {fileID: 20104948054135472}
+  - component: {fileID: 114913390291748020}
   m_Layer: 0
   m_Name: SupportPlayer
   m_TagString: Untagged
@@ -47,7 +48,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508861456889634}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -109,3 +110,14 @@ MonoBehaviour:
     i15: 195
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114913390291748020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508861456889634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a95472922e69fe448ba7fd5c7adffe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,12 +12,16 @@ public class NetworkTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		// starts game as server
 		if(Input.GetKeyDown(KeyCode.S))
 		{
 			GameManager.Instance.playerMode = GameManager.PlayerMode.Server;
 			netManager.StartNetworkSession();
 		}
 
+
+		//starts game as client
 		if(Input.GetKeyDown(KeyCode.C))
 		{
 			GameManager.Instance.playerMode = GameManager.PlayerMode.Client;

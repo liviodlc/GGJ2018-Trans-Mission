@@ -19,6 +19,14 @@ public class AgentPlayer : NetworkBehaviour
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 
+		if(GameManager.Instance.playerMode == GameManager.PlayerMode.Server)
+		{
+			
+			// disable support player camera
+			var camera = transform.GetComponentInChildren<Camera>();
+			camera.enabled = true;
+		}
+
 	}
 
 	private void FixedUpdate()
