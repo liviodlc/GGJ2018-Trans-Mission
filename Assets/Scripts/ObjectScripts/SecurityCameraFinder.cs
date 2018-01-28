@@ -11,7 +11,7 @@ public class SecurityCameraFinder : Singleton<MonoBehaviour> {
 	private int cameraArraySize;
 
 	private int currentCameraFeed = 0;
-
+	
 	// Use this for initialization
 	void Start ()
 	{

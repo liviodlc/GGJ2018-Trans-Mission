@@ -22,6 +22,9 @@ public class LockedDoor : MonoBehaviour {
 
     public bool isLocked = true;
 
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
     /*The combination that has been punched in.
      * Once it reaches the length of the combination,
      * it will either unlock the door or reset*/
@@ -31,6 +34,8 @@ public class LockedDoor : MonoBehaviour {
     void Start () {
         startPos = transform.position;
         EventManager.StartListening(GameEvent.OpenDoor+doorEventId, OpenDoorEvent);
+
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -79,6 +84,7 @@ public class LockedDoor : MonoBehaviour {
 
     void OpenDoorEvent()
 	{
+        audioSource.PlayOneShot(audioClip);
         Debug.Log("OPEN DOOR " + doorEventId);
 		StartCoroutine(openDoor());
 		EventManager.StopListening(GameEvent.OpenDoor+doorEventId, OpenDoorEvent);
