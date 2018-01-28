@@ -29,6 +29,9 @@ public class NetManager : NetworkManager
 
 		foundLocalGame = false;
 
+		ClientScene.RegisterPrefab(AgentPlayer);
+		ClientScene.RegisterPrefab(SupportPlayer);
+
 		StartCoroutine(RetrieveNetLocalDiscovery());
 	}
 
