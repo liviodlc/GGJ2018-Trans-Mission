@@ -24,6 +24,7 @@ public class AgentPlayer : NetworkBehaviour
 	private InteractiveObject hoveringObject;
 
 	private bool wasActionDown = false;
+    private bool isCursorLocked = true;
 
 	private void Start()
 	{
@@ -39,11 +40,19 @@ public class AgentPlayer : NetworkBehaviour
 		if (!isPlayerAgent)
 			return;
 
-		turn += Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;
-		rb.MoveRotation(Quaternion.Euler(Vector3.up * turn));
-		nod += -Input.GetAxis("Mouse Y") * nodSpeed * Time.deltaTime;
-		nod = Mathf.Max(minMaxNod.x, Mathf.Min(minMaxNod.y, nod));
-		cam.localEulerAngles = new Vector3(nod, 0, 0);
+        //Only use mouse rotation if cursor is locked
+        if (isCursorLocked)
+        {
+            turn += Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;
+            rb.MoveRotation(Quaternion.Euler(Vector3.up * turn));
+            nod += -Input.GetAxis("Mouse Y") * nodSpeed * Time.deltaTime;
+            nod = Mathf.Max(minMaxNod.x, Mathf.Min(minMaxNod.y, nod));
+            cam.localEulerAngles = new Vector3(nod, 0, 0);
+        }
+        else
+        {
+            rb.angularVelocity = Vector3.zero;
+        }
 
 		Vector3 fwd = transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 		Vector3 horiz = transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
@@ -53,6 +62,11 @@ public class AgentPlayer : NetworkBehaviour
 		if (isActionDown && !wasActionDown)
 			Interact();
 		wasActionDown = isActionDown;
+
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+            isCursorLocked = !isCursorLocked;
+
+        Cursor.lockState = isCursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
 	}
 
 	public void SetInteractiveObject(InteractiveObject target)
@@ -63,7 +77,22 @@ public class AgentPlayer : NetworkBehaviour
 			prompt.text = target.verb;
 	}
 
-	private void Interact()
+    public void SelectInteractiveObject(InteractiveObject target)
+    {
+        hoveringObject = target;
+        prompt.gameObject.SetActive(true);
+        prompt.text = target.verb;
+    }
+
+    public void DeselectInteractiveObject(InteractiveObject target)
+    {
+        if (hoveringObject != target)
+            return;
+        hoveringObject = null;
+        prompt.gameObject.SetActive(false);
+    }
+
+    private void Interact()
 	{
 		if (hoveringObject)
 			hoveringObject.Interact();
