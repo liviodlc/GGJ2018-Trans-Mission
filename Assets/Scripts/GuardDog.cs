@@ -10,7 +10,12 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	public float LookSpeed;
 	public float WaitToLookTime;
 	public Animator ThisAnim;
+
+	[Header("Sounds")]
+	public AudioClip SniffSound;
+	public AudioClip WalkingSound;
 	public AudioClip[] BarkSounds;
+	public AudioClip[] WhimperSounds;
 
 	private NavMeshAgent ThisNavAgent;
 	private float OrigSpeed;
@@ -52,16 +57,40 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	{
 		ThisNavAgent.speed = 0;
 		ThisAnim.SetBool("isWalking", false);
+		ThisAudio.Stop();
 		yield return new WaitForSeconds(WaitTime);
 		IsLooking = false;
 		timer = 0;
 		ThisAnim.SetBool("isWalking", true);
 		ThisNavAgent.speed = OrigSpeed;
+		PlaySound("Walking");
 	}
 
 	public void PlayAnim(string key)
 	{
 		ThisAnim.SetTrigger(key);
+	}
+
+	public void PlaySound(string key)
+	{
+		switch (key)
+		{
+			case "Sniff":
+				ThisAudio.PlayOneShot(SniffSound);
+				break;
+			case "Walking":
+				ThisAudio.clip = WalkingSound;
+				ThisAudio.Play();
+				break;
+			case "Bark":
+				ThisAudio.loop = true;
+				ThisAudio.clip = BarkSounds[Random.Range(0, BarkSounds.Length)];
+				ThisAudio.Play();
+				break;
+			case "Whimper":
+				ThisAudio.PlayOneShot(WhimperSounds[Random.Range(0, WhimperSounds.Length)]);
+				break;
+		}
 	}
 
 	public void LookAtSomething(Transform Target)
@@ -75,12 +104,13 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 		PathComp.enabled = false;
 		ThisNavAgent.SetDestination(info.target.transform.position);
 		ThisAnim.SetTrigger("Bark");
-		ThisAudio.PlayOneShot(BarkSounds[Random.Range(0, BarkSounds.Length)]);
+		PlaySound("Bark");
 	}
 
 	public void OnUnDetectedTarget(SightTargetInfo info)
 	{
 		PathComp.enabled = true;
+		ThisAudio.loop = false;
 	}
 
 	public void OnTargetCameIntoRange(SightTargetInfo info) {}

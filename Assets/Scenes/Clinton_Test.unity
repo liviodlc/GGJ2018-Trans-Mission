@@ -113,91 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: a0f776edda3c95c4f844de3f7446f798, type: 2}
---- !u!1 &71100880 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1353538481621606, guid: f6fe6f9980f11334db57eaef48cb27c3,
-    type: 2}
-  m_PrefabInternal: {fileID: 465917637}
---- !u!82 &71100881
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 71100880}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 5
-  MaxDistance: 15
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &73285938
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,14 +364,7 @@ Prefab:
       propertyPath: pathContainer
       value: 
       objectReference: {fileID: 2004149575}
-    - target: {fileID: 114297482335404206, guid: f6fe6f9980f11334db57eaef48cb27c3,
-        type: 2}
-      propertyPath: ThisAnim
-      value: 
-      objectReference: {fileID: 1696126260}
-    m_RemovedComponents:
-    - {fileID: 114896763767024324, guid: f6fe6f9980f11334db57eaef48cb27c3, type: 2}
-    - {fileID: 114969959821811192, guid: f6fe6f9980f11334db57eaef48cb27c3, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6fe6f9980f11334db57eaef48cb27c3, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &478074674 stripped
@@ -1025,11 +933,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04, y: 0.04000001, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &1696126260 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 95283318669891254, guid: f6fe6f9980f11334db57eaef48cb27c3,
-    type: 2}
-  m_PrefabInternal: {fileID: 465917637}
 --- !u!1001 &1702513305
 Prefab:
   m_ObjectHideFlags: 0
