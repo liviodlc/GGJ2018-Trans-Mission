@@ -9,6 +9,8 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 {
 	public float LookSpeed;
 	public float WaitToLookTime;
+	public Animator ThisAnim;
+	public AudioClip[] BarkSounds;
 
 	private NavMeshAgent ThisNavAgent;
 	private float OrigSpeed;
@@ -16,11 +18,13 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	private bool IsLooking;
 	private Transform LookTarget;
 	private navMove PathComp;
+	private AudioSource ThisAudio;
 
 	private void Start()
 	{
 		ThisNavAgent = GetComponent<NavMeshAgent>();
 		PathComp = GetComponent<navMove>();
+		ThisAudio = GetComponent<AudioSource>();
 		OrigSpeed = ThisNavAgent.speed;
 	}
 
@@ -47,10 +51,17 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	private IEnumerator StopAndGoExecute(float WaitTime)
 	{
 		ThisNavAgent.speed = 0;
+		ThisAnim.SetBool("isWalking", false);
 		yield return new WaitForSeconds(WaitTime);
 		IsLooking = false;
 		timer = 0;
+		ThisAnim.SetBool("isWalking", true);
 		ThisNavAgent.speed = OrigSpeed;
+	}
+
+	public void PlayAnim(string key)
+	{
+		ThisAnim.SetTrigger(key);
 	}
 
 	public void LookAtSomething(Transform Target)
@@ -63,6 +74,8 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	{
 		PathComp.enabled = false;
 		ThisNavAgent.SetDestination(info.target.transform.position);
+		ThisAnim.SetTrigger("Bark");
+		ThisAudio.PlayOneShot(BarkSounds[Random.Range(0, BarkSounds.Length)]);
 	}
 
 	public void OnUnDetectedTarget(SightTargetInfo info)

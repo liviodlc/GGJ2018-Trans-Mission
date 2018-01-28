@@ -7,6 +7,10 @@ public static class GameEvent
 {
 	public static string HackPanel = "hackpanel-001";
 	public static string OpenDoor = "open-door-";
+    public static string GameOver = "gameOverEvent";
+    public static string GameWon = "gameWonEvent";
+
+
 }
 
 public class EventManager : MonoBehaviour 
@@ -19,7 +23,7 @@ public class EventManager : MonoBehaviour
 		{
 			Destroy(this.gameObject);
 		}
-        
+
 		Instance = this;
 		Init();
 	}

@@ -32,6 +32,6 @@ public class DocStartup : MonoBehaviour {
 	public void RejectMissionBtn()
 	{
 		Debug.Log("show game over screen and then go back to char selection");
-		SceneManager.LoadScene("Menu");
+		SceneManager.LoadScene("GameOver");
 	}
 }

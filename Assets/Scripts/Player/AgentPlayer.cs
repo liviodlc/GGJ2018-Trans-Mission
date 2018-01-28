@@ -77,6 +77,16 @@ public class AgentPlayer : NetworkBehaviour
 		{
 			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"6");
 		}
+
+		if(Input.GetKeyDown(KeyCode.O))
+		{
+			CmdRaiseGlobalEvent(GameEvent.GameOver);
+		}
+
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			CmdRaiseGlobalEvent(GameEvent.GameWon);
+		}
 	}
 
 	private void Start()
