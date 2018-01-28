@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
                 // GameObject singleton = new GameObject();
 				// _instance = singleton.AddComponent<GameManager>();
 				// singleton.name = "(singleton) "+ typeof(GameManager).ToString();
-                Debug.LogError("GameManager is null");
+                //Debug.LogError("GameManager is null");
             }
 
             return _instance;

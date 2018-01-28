@@ -20,6 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: fa1b8074538fc664ab2bdacf2680954c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/networktest.unity
     guid: 48ed106057ed3ee4eaf995fce2745953

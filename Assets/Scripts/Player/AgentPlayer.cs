@@ -42,14 +42,38 @@ public class AgentPlayer : NetworkBehaviour
 
 	void TestEvents()
 	{
-		if(Input.GetKeyDown(KeyCode.Alpha1))
+		if(Input.GetKeyDown(KeyCode.Alpha0))
 		{
 			CmdRaiseGlobalEvent(GameEvent.HackPanel);
 		}
 
+		if(Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"1");
+		}
+
 		if(Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			CmdRaiseGlobalEvent(GameEvent.OpenFirstDoor);
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"2");
+		}
+
+		if(Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"3");
+		}
+
+		if(Input.GetKeyDown(KeyCode.Alpha4))
+		{
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"4");
+		}
+
+		if(Input.GetKeyDown(KeyCode.Alpha5))
+		{
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"5");
+		}
+		if(Input.GetKeyDown(KeyCode.Alpha6))
+		{
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"6");
 		}
 	}
 
