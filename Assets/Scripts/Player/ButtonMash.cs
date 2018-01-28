@@ -9,6 +9,7 @@ public class ButtonMash : MonoBehaviour {
     public string text;
     public TextAsset file;
     public Text outputText;
+    public VaultPasswordGenerator passwordRef;
     public int maxChunkLength = 10;
     public int minChunkLength = 3;
 
@@ -22,11 +23,23 @@ public class ButtonMash : MonoBehaviour {
         if(file != null)
             text = file.text;
 
+        if (passwordRef != null)
+            StartCoroutine(generateChunks());
+
+	}
+
+    IEnumerator generateChunks()
+    {
+        while (passwordRef.getSpam().Length <= 0)
+            yield return new WaitForSeconds(.3f);
+
+        text = passwordRef.getSpam();
+
         chunks = new List<string>();
 
         //Generate chunks
         int i = 0;
-        while( i < text.Length)
+        while (i < text.Length)
         {
             int chunkLength = Random.Range(minChunkLength, maxChunkLength + 1);
             int i2 = i + chunkLength;
@@ -38,7 +51,8 @@ public class ButtonMash : MonoBehaviour {
             i = i2;
         }
 
-	}
+        yield return null;
+    }
 
     void Update()
     {
