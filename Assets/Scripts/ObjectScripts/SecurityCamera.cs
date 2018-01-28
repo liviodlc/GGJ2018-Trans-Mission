@@ -4,44 +4,53 @@ using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour {
 
-    //Once the camera hits this angle, it will reverse its rotation
-    public float maxAngle;
-    //Speed at which camera rotates
-    public float turnSpeed;
-    
-    //Master on/off switch
-    public bool isActive = true;
+	[Header("Camera Info")]
+	public int Id;
 
-    //Determines if camera is rotatin positively
-    private bool isPos = true;
-    //Simplifies angle and returns negative number if angle is greater than 180
-    private float angle { get { return (transform.localRotation.eulerAngles.y < 180) ? 
-                transform.localRotation.eulerAngles.y : 
-                transform.localRotation.eulerAngles.y - 360; } }
+	[Header("Positions")]
+	public Vector3 startRotation;
+	public Vector3 endRotation;
+	
+	[Header("Rotation Times")]
+	public float duration = 2;
+	public float delay = 1;
 
-	// Use this for initialization
-	void Start () {
-		
+	private bool isReverse;
+	private Transform rotationBody;
+
+	void Start()
+	{
+		rotationBody = transform.Find("CameraBody");
+		if(rotationBody == null)
+		{
+			Debug.LogError("No object found with the name 'CameraBody'");
+			return;
+		}
+
+		StartMovement();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (!isActive)
-            return;
-
-        if (isPos)
-        {
-            if (angle < maxAngle)
-                transform.Rotate(0, turnSpeed * Time.deltaTime, 0);
-            else
-                isPos = false;
-        }
-        else
-        {
-            if (angle > -maxAngle )
-                transform.Rotate(0, -turnSpeed * Time.deltaTime, 0);
-            else
-                isPos = true;
-        }
+	public void StartMovement()
+	{
+		StartCoroutine(MoveCamera());
 	}
+
+	private IEnumerator MoveCamera()
+    {
+        float t = 0.0f;
+		var start = (!isReverse)  ? startRotation : endRotation;
+		var end =   (isReverse) ? startRotation : endRotation;
+
+
+        while(t <= 1)
+        {
+            t += Time.deltaTime/duration;
+            rotationBody.rotation = Quaternion.Euler(Vector3.Lerp(start, end, Mathf.SmoothStep(0,1,t)));
+            yield return new WaitForFixedUpdate();
+        }
+
+		yield return new WaitForSeconds(delay);
+		isReverse = !isReverse;
+		StartCoroutine(MoveCamera());
+    }
 }
