@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4926867793144528}
   - component: {fileID: 20959536115409882}
   - component: {fileID: 124492101936915594}
-  - component: {fileID: 81823565625368568}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -161,7 +160,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -253,13 +252,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510453328513050}
   m_Mesh: {fileID: 4300000, guid: c2b08c623ebec74469ad98aafd0c9152, type: 3}
---- !u!81 &81823565625368568
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1323399267818148}
-  m_Enabled: 1
 --- !u!114 &114374243418871904
 MonoBehaviour:
   m_ObjectHideFlags: 1

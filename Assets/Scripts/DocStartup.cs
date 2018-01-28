@@ -1,30 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class DocStartup : MonoBehaviour {
 
 	public TextMeshProUGUI codeTxt;
-	NetManager netManager;
+	bool hasAccepted;
 	
 	// Use this for initialization
 	void Start () {
 
-		netManager = GameObject.FindObjectOfType<NetManager>();
 		GameManager.Instance.playerMode = GameManager.PlayerMode.Server;
-		netManager.CreateNewRoom();
+		
 
-		StartCoroutine(GetRoomName());
+		hasAccepted = false;
 	}
 	
 
-	IEnumerator GetRoomName()
+	public void AcceptMissionBtn()
 	{
-		while(string.IsNullOrEmpty(netManager.RoomName))
+		if(hasAccepted)
 		{
-			yield return new WaitForSeconds(1);
+			return;
 		}
+		hasAccepted = true;
 
-		codeTxt.SetText(netManager.RoomName);
+		NetManager.Instance.CreateNewRoom();
+	}
+
+	public void RejectMissionBtn()
+	{
+		Debug.Log("show game over screen and then go back to char selection");
+		SceneManager.LoadScene("Menu");
 	}
 }

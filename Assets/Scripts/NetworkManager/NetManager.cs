@@ -18,6 +18,8 @@ public class NetManager : NetworkManager
 	public uint maxPlayers;
 	public uint roomNameLength;
 
+	public static NetManager Instance;
+
 	private int joinAttemptCount;
 	public string roomName;
 	private bool hasCreatedRoom;
@@ -36,7 +38,19 @@ public class NetManager : NetworkManager
 
 	private List<string> previousRoomNameAttempts;
 
+
+
 	void Start () {
+
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;        
+        DontDestroyOnLoad(this);
+		
 		previousRoomNameAttempts = new List<string>();
 		joinAttemptCount = 0;
 

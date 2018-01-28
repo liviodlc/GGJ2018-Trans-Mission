@@ -4,13 +4,10 @@ using UnityEngine;
 using TMPro;
 public class AgentStartup : MonoBehaviour {
 
-	public TMP_InputField inputField;
-	NetManager netManager;
-	
+	public TMP_InputField inputField;	
 	// Use this for initialization
-	void Start () {
-
-		netManager = GameObject.FindObjectOfType<NetManager>();
+	void Start () 
+	{
 		GameManager.Instance.playerMode = GameManager.PlayerMode.Client;
 	}
 
@@ -23,6 +20,6 @@ public class AgentStartup : MonoBehaviour {
 	}
 	public void EnterGame()
 	{
-		netManager.JoinExistingRoom(inputField.text);
+		NetManager.Instance.JoinExistingRoom(inputField.text);
 	}
 }

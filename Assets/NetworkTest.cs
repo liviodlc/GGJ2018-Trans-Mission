@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class NetworkTest : MonoBehaviour {
 
 	public InputField inputField;
-	NetManager netManager;
 	// Use this for initialization
 	void Start () {
-		netManager = GameObject.FindObjectOfType<NetManager>();
 	}
 	
 	// Update is called once per frame
@@ -20,9 +18,9 @@ public class NetworkTest : MonoBehaviour {
 		{
 			GameManager.Instance.playerMode = GameManager.PlayerMode.Server;
 			//netManager.StartNetworkSession();
-			netManager.CreateNewRoom();
+			NetManager.Instance.CreateNewRoom();
 
-			var roomName = netManager.RoomName;
+			var roomName = NetManager.Instance.RoomName;
 		}
 
 
@@ -31,7 +29,7 @@ public class NetworkTest : MonoBehaviour {
 		{
 			GameManager.Instance.playerMode = GameManager.PlayerMode.Client;
 			//StartCoroutine(netManager.JoinLocalBroadcast());
-			netManager.JoinExistingRoom(inputField.text);
+			NetManager.Instance.JoinExistingRoom(inputField.text);
 		}
 	}
 }
