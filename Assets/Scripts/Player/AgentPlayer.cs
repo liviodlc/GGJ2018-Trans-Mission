@@ -26,6 +26,8 @@ public class AgentPlayer : NetworkBehaviour
 	private bool wasActionDown = false;
     private bool isCursorLocked = true;
 
+	public Animator animator;
+
 	[Command]
 	public void CmdRaiseGlobalEvent(string eventName)
 	{
@@ -82,6 +84,8 @@ public class AgentPlayer : NetworkBehaviour
 		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Client || testWithoutNetworking;
 		cam.gameObject.SetActive(isPlayerAgent);
 
+		animator = GetComponentInChildren<Animator> ();
+
 		if (isPlayerAgent)
 			Cursor.lockState = CursorLockMode.Locked;
 	}
@@ -96,8 +100,8 @@ public class AgentPlayer : NetworkBehaviour
 	}
 	private void FixedUpdate()
 	{
-		if (!isPlayerAgent)
-			return;
+		//if (!isPlayerAgent)
+		//	return;
 
         //Only use mouse rotation if cursor is locked
         if (isCursorLocked)
@@ -116,6 +120,8 @@ public class AgentPlayer : NetworkBehaviour
 		Vector3 fwd = transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 		Vector3 horiz = transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 		rb.velocity = fwd + horiz;
+
+		animator.SetFloat ("MoveSpeed", rb.velocity.magnitude );
 
 		bool isActionDown = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.F);
 		if (isActionDown && !wasActionDown)
