@@ -18,7 +18,8 @@ public class GameOver : MonoBehaviour {
 		if(NetManager.Instance.isNetworkActive)
 		{
 			Debug.Log("Disconnect");
-			NetManager.Instance.client.Disconnect();
+			NetManager.Instance.StopHost();
+			// NetManager.Instance.client.Disconnect();
 		}
 		else 
 		{
