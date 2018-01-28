@@ -42,6 +42,6 @@ public class NetLocalDiscovery : NetworkDiscovery
 	public override void OnReceivedBroadcast(string fromAddress, string data)
     {
     	Debug.Log("Received Message from: " + fromAddress + " data: " + data);
-    	netManager.SetNetworkJoinAddress(fromAddress);
+    	//netManager.SetNetworkJoinAddress(fromAddress);
     }
 }
