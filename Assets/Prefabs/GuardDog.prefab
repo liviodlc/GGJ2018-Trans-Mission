@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathContainer: {fileID: 0}
   onStart: 1
-  moveToPath: 1
+  moveToPath: 0
   reverse: 0
   startPoint: 0
   currentPoint: 0
