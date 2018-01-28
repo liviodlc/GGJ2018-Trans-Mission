@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecurityCameraFinder : MonoBehaviour {
+public class SecurityCameraFinder : Singleton<MonoBehaviour> {
 
 
 	private Dictionary<int, SecurityCamera> cameraList; 
