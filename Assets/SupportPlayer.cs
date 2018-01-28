@@ -10,16 +10,19 @@ public class SupportPlayer : NetworkBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		doctorUI = GetComponentInChildren<DoctorUI>();
 		if(GameManager.Instance.playerMode == GameManager.PlayerMode.Server)
 		{
-			Debug.Log("enable camera");
 			// disable support player camera
 			var camera = transform.GetComponent<Camera>();
 			camera.enabled = true;
 
 			StartCoroutine(GetSecurityCameraFinder());
 
-			doctorUI = GetComponentInChildren<DoctorUI>();
+		}
+		else
+		{
+			doctorUI.gameObject.SetActive(false);
 		}
 		
 	}
