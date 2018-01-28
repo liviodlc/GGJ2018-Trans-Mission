@@ -12,6 +12,7 @@ public class AgentPlayer : NetworkBehaviour
 	[Header("References")]
 	public Transform cam;
 	public Rigidbody rb;
+	public GameObject canvas;
 	public TMPro.TextMeshProUGUI prompt;
 
 	[Header("Debug")]
