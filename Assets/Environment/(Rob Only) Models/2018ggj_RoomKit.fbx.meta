@@ -27,6 +27,8 @@ ModelImporter:
     100038: DoorWay
     100040: Lamp
     100042: Vent
+    100044: Wall.OurterCourner
+    100046: Door
     400000: //RootNode
     400002: ArtDeco
     400004: Ceiling
@@ -49,6 +51,8 @@ ModelImporter:
     400038: DoorWay
     400040: Lamp
     400042: Vent
+    400044: Wall.OurterCourner
+    400046: Door
     2100000: CIrcutBoxMat
     2100002: PipingMat
     2100004: Vent
@@ -79,6 +83,8 @@ ModelImporter:
     2300036: DoorWay
     2300038: Lamp
     2300040: Vent
+    2300042: Wall.OurterCourner
+    2300044: Door
     3300000: ArtDeco
     3300002: Ceiling
     3300004: CeilingIncline
@@ -100,6 +106,8 @@ ModelImporter:
     3300036: DoorWay
     3300038: Lamp
     3300040: Vent
+    3300042: Wall.OurterCourner
+    3300044: Door
     4300000: CircuitBox
     4300002: Pipe
     4300004: Cube
@@ -121,6 +129,8 @@ ModelImporter:
     4300036: Vent
     4300038: Lamp
     4300040: DoorWay
+    4300042: Wall.OurterCourner
+    4300044: Door
     6400000: ArtDeco
     6400002: Ceiling
     6400004: CeilingIncline
@@ -139,6 +149,8 @@ ModelImporter:
     6400030: Wall
     6400032: WallWithDoor
     6400034: WallWithSafe
+    6400036: Wall.OurterCourner
+    6400038: Door
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -160,6 +172,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: DarkPlastic
     second: {fileID: 2100000, guid: eca1a616ce187f94ba10f132a8fe5da3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DoorMaterial
+    second: {fileID: 2100000, guid: 110b49121514c7b47944011532b5ef18, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -239,7 +256,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
