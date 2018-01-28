@@ -21,6 +21,8 @@ public class NetworkTest : MonoBehaviour {
 			GameManager.Instance.playerMode = GameManager.PlayerMode.Server;
 			//netManager.StartNetworkSession();
 			netManager.CreateNewRoom();
+
+			var roomName = netManager.RoomName;
 		}
 
 

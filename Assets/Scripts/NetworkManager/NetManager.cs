@@ -9,8 +9,8 @@ using UnityEngine.Networking.NetworkSystem;
 public class NetManager : NetworkManager 
 {
 	[Header("Player Prefabs")]
-	public GameObject AgentPlayer;
-	public GameObject SupportPlayer;
+	public GameObject ServerPlayer;
+	public GameObject ClientPlayer;
 
 	[Header("Match Making Settings")]
 	
@@ -58,8 +58,8 @@ public class NetManager : NetworkManager
 			roomNameLength = 4;
 		}
 
-		ClientScene.RegisterPrefab(AgentPlayer);
-		ClientScene.RegisterPrefab(SupportPlayer);
+		ClientScene.RegisterPrefab(ServerPlayer);
+		ClientScene.RegisterPrefab(ClientPlayer);
 	}
 
 	public void CreateNewRoom()
@@ -253,11 +253,12 @@ public class NetManager : NetworkManager
 		
 		if(msg == GameManager.PlayerMode.Server.ToString())
 		{
-			var player = (GameObject)GameObject.Instantiate(AgentPlayer, Vector3.zero, Quaternion.identity);
+			var player = (GameObject)GameObject.Instantiate(ServerPlayer, Vector3.zero, Quaternion.identity);
 			NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 		}
 		else if(msg == GameManager.PlayerMode.Client.ToString()) {
-			var player = (GameObject)GameObject.Instantiate(SupportPlayer, Vector3.zero, Quaternion.identity);
+			var player = (GameObject)GameObject.Instantiate(ClientPlayer
+	, Vector3.zero, Quaternion.identity);
 			NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 		}
 		else 
