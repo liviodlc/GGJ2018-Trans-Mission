@@ -30,6 +30,7 @@ public class AgentPlayer : NetworkBehaviour
 	private Vector3 ColliderSize;
 
 	public Animator animator;
+	[HideInInspector] public bool HasTreasure;
 
 	[Command]
 	public void CmdRaiseGlobalEvent(string eventName)
