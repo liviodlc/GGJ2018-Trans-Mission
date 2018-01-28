@@ -10,12 +10,13 @@ public class InteractionCollider : MonoBehaviour
 	{
 		InteractiveObject target = null;
 		if (target = other.GetComponent<InteractiveObject>())
-			player.SetInteractiveObject(target);
+			player.SelectInteractiveObject(target);
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.GetComponent<InteractiveObject>())
-			player.SetInteractiveObject(null);
+		InteractiveObject target = null;
+		if (target = other.GetComponent<InteractiveObject>())
+			player.DeselectInteractiveObject(target);
 	}
 }
