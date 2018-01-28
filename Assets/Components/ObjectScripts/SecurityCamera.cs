@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecurityCameraMovement : MonoBehaviour 
-{
+public class SecurityCamera : MonoBehaviour {
+
+	[Header("Camera Info")]
+	public int Id;
+
 	[Header("Positions")]
 	public Vector3 startRotation;
 	public Vector3 endRotation;
