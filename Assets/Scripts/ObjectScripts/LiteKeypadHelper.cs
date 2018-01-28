@@ -45,7 +45,8 @@ public class LiteKeypadHelper : MonoBehaviour {
         if (keypadRef.GetComponentInChildren<Canvas>().worldCamera == null)
         {
             //Set canvas event camera
-            keypadRef.GetComponentInChildren<Canvas>().worldCamera = GameObject.FindObjectsOfType<AgentPlayer>()[0].GetComponentInChildren<Camera>(); //NetManager.Instance.ClientPlayer.GetComponentInChildren<Camera>();
+            if(FindObjectsOfType<AgentPlayer>().Length > 0)
+                keypadRef.GetComponentInChildren<Canvas>().worldCamera = FindObjectsOfType<AgentPlayer>()[0].GetComponentInChildren<Camera>(); //NetManager.Instance.ClientPlayer.GetComponentInChildren<Camera>();
         }
     }
 }

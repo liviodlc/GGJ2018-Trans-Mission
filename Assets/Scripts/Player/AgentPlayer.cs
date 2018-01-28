@@ -11,6 +11,7 @@ public class AgentPlayer : NetworkBehaviour
 
 	[Header("References")]
 	public Transform cam;
+	public Transform cam_pivot;
 	public Rigidbody rb;
 	public GameObject canvas;
 	public TMPro.TextMeshProUGUI prompt;
@@ -104,10 +105,9 @@ public class AgentPlayer : NetworkBehaviour
 	{
 		if (!isPlayerAgent)
 			return;
-		
 		TestEvents();
-		
 	}
+
 	private void FixedUpdate()
 	{
 		//if (!isPlayerAgent)
@@ -121,6 +121,7 @@ public class AgentPlayer : NetworkBehaviour
             nod += -Input.GetAxis("Mouse Y") * nodSpeed * Time.deltaTime;
             nod = Mathf.Max(minMaxNod.x, Mathf.Min(minMaxNod.y, nod));
             cam.localEulerAngles = new Vector3(nod, 0, 0);
+			cam.position = cam_pivot.position;
         }
         else
         {
