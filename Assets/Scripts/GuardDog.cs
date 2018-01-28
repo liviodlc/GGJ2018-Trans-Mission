@@ -54,6 +54,15 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 		StartCoroutine(StopAndGoExecute(WaitTime));
 	}
 
+	public void BackToNormal()
+	{
+		ThisAudio.Stop();
+		ThisAnim.SetBool("IsRunning", false);
+		ThisAnim.SetBool("isWalking", true);
+		ThisNavAgent.speed = OrigSpeed;
+		PlaySound("Walking");
+	}
+
 	private IEnumerator StopAndGoExecute(float WaitTime)
 	{
 		ThisNavAgent.speed = 0;
