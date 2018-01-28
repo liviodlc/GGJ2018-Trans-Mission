@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Contains logic for receiving keypad input
 public class LockedDoor : MonoBehaviour {
@@ -10,6 +11,8 @@ public class LockedDoor : MonoBehaviour {
     public int id;
     //Combinantion to unlock door
     public string combination;
+
+    public Text outputText;
 
     //How far the door should move when it opens
     public Vector3 openOffset;
@@ -24,6 +27,8 @@ public class LockedDoor : MonoBehaviour {
 
     public AudioClip audioClip;
     public AudioSource audioSource;
+
+    bool resetText = true;
 
     /*The combination that has been punched in.
      * Once it reaches the length of the combination,
@@ -46,23 +51,34 @@ public class LockedDoor : MonoBehaviour {
     //Called whenever the player punches in a number on the keypad
     public void numberInput(char symbol)
     {
+
+        if (resetText)
+        {
+            if(outputText != null) outputText.text = "";
+            resetText = false;
+        }
+
         //Add number to current combination
         currentCombo += symbol;
+        if (outputText != null) outputText.text += symbol;
         Debug.Log("Door #" + id + ": " + currentCombo);
         //If the current combination has as many numbers as the door's combination...
         if (currentCombo.Length == combination.ToString().Length)
         {
+            resetText = true;
             //If the combination is correct...
             if (currentCombo == combination)
             {
                 //Unlock the door
                 isLocked = false;
+                if (outputText != null) outputText.text = "Combination Correct!  Door #" + getId() + " unlocked.";
                 Debug.Log("Combination Correct!  Door #" + getId() + " unlocked.");
                 StartCoroutine(openDoor());
             }
             //If the combination is incorrect...
             else
             {
+                if (outputText != null) outputText.text = "Combination Incorrect.";
                 Debug.Log("Combination Incorrect.");
             }
             //Regardless, reset the current combination

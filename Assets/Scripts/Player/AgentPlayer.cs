@@ -25,7 +25,7 @@ public class AgentPlayer : NetworkBehaviour
 	private InteractiveObject hoveringObject;
 
 	private bool wasActionDown = false;
-    private bool isCursorLocked = true;
+	private bool isCursorLocked = true;
 	private GameObject MainCollider;
 	private Vector3 ColliderSize;
 
@@ -48,46 +48,46 @@ public class AgentPlayer : NetworkBehaviour
 
 	void TestEvents()
 	{
-		if(Input.GetKeyDown(KeyCode.Alpha0))
+		if (Input.GetKeyDown(KeyCode.Alpha0))
 		{
 			CmdRaiseGlobalEvent(GameEvent.HackPanel);
 		}
 
-		if(Input.GetKeyDown(KeyCode.Alpha1))
+		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"1");
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor + "1");
 		}
 
-		if(Input.GetKeyDown(KeyCode.Alpha2))
+		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"2");
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor + "2");
 		}
 
-		if(Input.GetKeyDown(KeyCode.Alpha3))
+		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
-			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"3");
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor + "3");
 		}
 
-		if(Input.GetKeyDown(KeyCode.Alpha4))
+		if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
-			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"4");
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor + "4");
 		}
 
-		if(Input.GetKeyDown(KeyCode.Alpha5))
+		if (Input.GetKeyDown(KeyCode.Alpha5))
 		{
-			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"5");
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor + "5");
 		}
-		if(Input.GetKeyDown(KeyCode.Alpha6))
+		if (Input.GetKeyDown(KeyCode.Alpha6))
 		{
-			CmdRaiseGlobalEvent(GameEvent.OpenDoor+"6");
+			CmdRaiseGlobalEvent(GameEvent.OpenDoor + "6");
 		}
 
-		if(Input.GetKeyDown(KeyCode.O))
+		if (Input.GetKeyDown(KeyCode.O))
 		{
 			CmdRaiseGlobalEvent(GameEvent.GameOver);
 		}
 
-		if(Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.P))
 		{
 			CmdRaiseGlobalEvent(GameEvent.GameWon);
 		}
@@ -100,7 +100,7 @@ public class AgentPlayer : NetworkBehaviour
 		MainCollider = transform.Find("Main Collider").gameObject;
 		ColliderSize = new Vector3(0, 1, 0);
 
-		animator = GetComponentInChildren<Animator> ();
+		animator = GetComponentInChildren<Animator>();
 
 		if (isPlayerAgent)
 			Cursor.lockState = CursorLockMode.Locked;
@@ -118,54 +118,58 @@ public class AgentPlayer : NetworkBehaviour
 		//if (!isPlayerAgent)
 		//	return;
 
-        //Only use mouse rotation if cursor is locked
-        if (isCursorLocked)
-        {
-            turn += Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;
-            rb.MoveRotation(Quaternion.Euler(Vector3.up * turn));
-            nod += -Input.GetAxis("Mouse Y") * nodSpeed * Time.deltaTime;
-            nod = Mathf.Max(minMaxNod.x, Mathf.Min(minMaxNod.y, nod));
-            cam.localEulerAngles = new Vector3(nod, 0, 0);
+		//Only use mouse rotation if cursor is locked
+		if (isCursorLocked)
+		{
+			turn += Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;
+			rb.MoveRotation(Quaternion.Euler(Vector3.up * turn));
+			nod += -Input.GetAxis("Mouse Y") * nodSpeed * Time.deltaTime;
+			nod = Mathf.Max(minMaxNod.x, Mathf.Min(minMaxNod.y, nod));
+			cam.localEulerAngles = new Vector3(nod, 0, 0);
 			cam.position = cam_pivot.position;
-        }
-        else
-        {
-            rb.angularVelocity = Vector3.zero;
-        }
+		}
+		else
+		{
+			rb.angularVelocity = Vector3.zero;
+		}
 
 		Vector3 fwd = transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 		Vector3 horiz = transform.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 		rb.velocity = fwd + horiz;
 
-		animator.SetFloat ("MoveSpeed", rb.velocity.magnitude );
+		animator.SetFloat("MoveSpeed", rb.velocity.magnitude);
 
 		bool isActionDown = Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.F);
 		if (isActionDown && !wasActionDown)
 			Interact();
 		wasActionDown = isActionDown;
 
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-            isCursorLocked = !isCursorLocked;
+		if (Input.GetKeyDown(KeyCode.LeftAlt))
+			isCursorLocked = !isCursorLocked;
 
-        Cursor.lockState = isCursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
+		Cursor.lockState = isCursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
 	}
 
 	public void SelectInteractiveObject(InteractiveObject target)
 	{
+		if (hoveringObject != target && hoveringObject != null)
+			hoveringObject.PlayerFace = null;
 		hoveringObject = target;
 		prompt.gameObject.SetActive(true);
 		prompt.text = target.verb;
+		target.PlayerFace = this;
 	}
 
 	public void DeselectInteractiveObject(InteractiveObject target)
 	{
 		if (hoveringObject != target)
 			return;
+		hoveringObject.PlayerFace = null;
 		hoveringObject = null;
 		prompt.gameObject.SetActive(false);
 	}
 
-    private void Interact()
+	private void Interact()
 	{
 		if (hoveringObject)
 			hoveringObject.Interact();
