@@ -63,7 +63,7 @@ public class LockedDoor : MonoBehaviour {
         }
     }
 
-    private IEnumerator openDoor()
+    public IEnumerator openDoor()
     {
         float t = 0.0f;
 

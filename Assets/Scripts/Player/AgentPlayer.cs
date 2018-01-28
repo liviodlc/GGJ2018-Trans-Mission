@@ -26,6 +26,33 @@ public class AgentPlayer : NetworkBehaviour
 	private bool wasActionDown = false;
     private bool isCursorLocked = true;
 
+	[Command]
+	public void CmdRaiseGlobalEvent(string eventName)
+	{
+		Debug.Log("SERVER raising global event: " + eventName);
+		RpcRaiseGlobalEvent(eventName);
+	}
+
+	[ClientRpc]
+	public void RpcRaiseGlobalEvent(string eventName)
+	{
+		Debug.Log("CLIENT raising global event: " + eventName);
+		EventManager.TriggerEvent(eventName);
+	}
+
+	void TestEvents()
+	{
+		if(Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			CmdRaiseGlobalEvent(GameEvent.HackPanel);
+		}
+
+		if(Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			CmdRaiseGlobalEvent(GameEvent.OpenFirstDoor);
+		}
+	}
+
 	private void Start()
 	{
 		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Client || testWithoutNetworking;
@@ -35,6 +62,14 @@ public class AgentPlayer : NetworkBehaviour
 			Cursor.lockState = CursorLockMode.Locked;
 	}
 
+	private void Update()
+	{
+		if (!isPlayerAgent)
+			return;
+		
+		TestEvents();
+		
+	}
 	private void FixedUpdate()
 	{
 		if (!isPlayerAgent)
@@ -83,6 +118,7 @@ public class AgentPlayer : NetworkBehaviour
 		hoveringObject = null;
 		prompt.gameObject.SetActive(false);
 	}
+
     private void Interact()
 	{
 		if (hoveringObject)

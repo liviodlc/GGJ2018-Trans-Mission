@@ -7,6 +7,8 @@ public class SupportPlayer : NetworkBehaviour {
 
 	SecurityCameraFinder securityCameraFinder;
 	DoctorUI doctorUI;
+
+	public string panelHackedText;
 	// Use this for initialization
 	void Start () 
 	{
@@ -18,6 +20,10 @@ public class SupportPlayer : NetworkBehaviour {
 			camera.enabled = true;
 
 			StartCoroutine(GetSecurityCameraFinder());
+
+			doctorUI.cameraImage.gameObject.SetActive(false);
+			Debug.Log("Listening for event HackPanel");
+			EventManager.StartListening(GameEvent.HackPanel, PanelWasHacked);
 
 		}
 		else
@@ -35,8 +41,10 @@ public class SupportPlayer : NetworkBehaviour {
 			return;
 		}
 
+		Debug.Log("Accessing cameras");
 		doctorUI.noCameraFeedObj.SetActive(false);
-		doctorUI.cameraImage.texture = securityCameraFinder.securityCameraRenderTexture;
+		doctorUI.cameraImage.gameObject.SetActive(true);
+		//doctorUI.cameraImage.texture = securityCameraFinder.securityCameraRenderTexture;
 	}
 	
 	IEnumerator GetSecurityCameraFinder()
@@ -49,5 +57,16 @@ public class SupportPlayer : NetworkBehaviour {
 
 		doctorUI.previousCameraBtn.onClick.AddListener(securityCameraFinder.PreviousCamera);
 		doctorUI.nextCameraBtn.onClick.AddListener(securityCameraFinder.NextCamera);		
+	}
+
+
+	public void PanelWasHacked()
+	{
+		EventManager.StopListening(GameEvent.HackPanel, PanelWasHacked);
+
+
+
+		Debug.Log("Panel was hacked event");
+		GetCameraAccess();
 	}
 }
