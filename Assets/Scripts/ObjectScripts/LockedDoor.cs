@@ -8,7 +8,7 @@ public class LockedDoor : MonoBehaviour {
     //Numeric ID
     public int id;
     //Combinantion to unlock door
-    public int combination;
+    public string combination;
 
     //How far the door should move when it opens
     public Vector3 openOffset;
@@ -37,16 +37,16 @@ public class LockedDoor : MonoBehaviour {
 	}
 
     //Called whenever the player punches in a number on the keypad
-    public void numberInput(int number)
+    public void numberInput(char symbol)
     {
         //Add number to current combination
-        currentCombo += number.ToString();
+        currentCombo += symbol;
         Debug.Log("Door #" + id + ": " + currentCombo);
         //If the current combination has as many numbers as the door's combination...
         if (currentCombo.Length == combination.ToString().Length)
         {
             //If the combination is correct...
-            if (int.Parse(currentCombo) == combination)
+            if (currentCombo == combination)
             {
                 //Unlock the door
                 isLocked = false;

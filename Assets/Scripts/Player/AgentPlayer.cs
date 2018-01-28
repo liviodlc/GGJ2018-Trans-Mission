@@ -84,21 +84,6 @@ public class AgentPlayer : NetworkBehaviour
 		prompt.gameObject.SetActive(false);
 	}
 
-    public void SelectInteractiveObject(InteractiveObject target)
-    {
-        hoveringObject = target;
-        prompt.gameObject.SetActive(true);
-        prompt.text = target.verb;
-    }
-
-    public void DeselectInteractiveObject(InteractiveObject target)
-    {
-        if (hoveringObject != target)
-            return;
-        hoveringObject = null;
-        prompt.gameObject.SetActive(false);
-    }
-
     private void Interact()
 	{
 		if (hoveringObject)
