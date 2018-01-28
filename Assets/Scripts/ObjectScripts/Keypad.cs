@@ -8,7 +8,7 @@ public class Keypad : MonoBehaviour {
 
     Button _button;
     //number that this button represents.  0-9.
-    public int num;
+    public char symbol;
 
     //Reference to door that the keypad unlocks
     public LockedDoor doorRef;
@@ -31,7 +31,7 @@ public class Keypad : MonoBehaviour {
         if (!doorRef.isLocked)
             return;
 
-        doorRef.numberInput(num);
+        doorRef.numberInput(symbol);
     }
 
 }

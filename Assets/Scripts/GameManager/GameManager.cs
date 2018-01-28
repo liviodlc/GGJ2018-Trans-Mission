@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager> {
+public class GameManager : MonoBehaviour {
 
 	public enum PlayerMode {Server, Client};
 
@@ -11,8 +11,18 @@ public class GameManager : Singleton<GameManager> {
     [Header("Game Settings")]
 	public PlayerMode playerMode;
 
+    public static GameManager Instance;
+
     void Start()
     {
+
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;        
         DontDestroyOnLoad(this);
     }
 }

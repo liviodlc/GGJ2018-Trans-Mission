@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4886544361670346}
   - component: {fileID: 33732247759304726}
   - component: {fileID: 23242768705105408}
+  - component: {fileID: 64697308760688916}
   m_Layer: 0
   m_Name: FloorPlane
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 4290546527723138}
   - component: {fileID: 33407419162155400}
   - component: {fileID: 23625255344914630}
+  - component: {fileID: 64965487934571928}
   m_Layer: 0
   m_Name: Ceiling
   m_TagString: Untagged
@@ -183,3 +185,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375022829313918}
   m_Mesh: {fileID: 4300022, guid: 7bdf3ba67e8f0e94fa8fb56bf07b38a0, type: 3}
+--- !u!64 &64697308760688916
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1375022829313918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300022, guid: 7bdf3ba67e8f0e94fa8fb56bf07b38a0, type: 3}
+--- !u!64 &64965487934571928
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753391754819014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300028, guid: 7bdf3ba67e8f0e94fa8fb56bf07b38a0, type: 3}

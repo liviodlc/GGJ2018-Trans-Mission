@@ -121,6 +121,24 @@ ModelImporter:
     4300036: Vent
     4300038: Lamp
     4300040: DoorWay
+    6400000: ArtDeco
+    6400002: Ceiling
+    6400004: CeilingIncline
+    6400006: CircuitBox
+    6400008: DoorWay
+    6400010: FloorPlane
+    6400012: Incline
+    6400014: KeyPad
+    6400016: Lamp
+    6400018: Lamp2
+    6400020: Pipe
+    6400022: SafeDoor
+    6400024: Stool
+    6400026: Table
+    6400028: Vent
+    6400030: Wall
+    6400032: WallWithDoor
+    6400034: WallWithSafe
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -198,7 +216,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

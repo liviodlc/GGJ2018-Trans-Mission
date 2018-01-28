@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NetworkTest : MonoBehaviour {
 
-	NetManager netManager;
+	public InputField inputField;
 	// Use this for initialization
 	void Start () {
-		netManager = GameObject.FindObjectOfType<NetManager>();
 	}
 	
 	// Update is called once per frame
@@ -17,7 +17,10 @@ public class NetworkTest : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.S))
 		{
 			GameManager.Instance.playerMode = GameManager.PlayerMode.Server;
-			netManager.StartNetworkSession();
+			//netManager.StartNetworkSession();
+			NetManager.Instance.CreateNewRoom();
+
+			var roomName = NetManager.Instance.RoomName;
 		}
 
 
@@ -25,7 +28,8 @@ public class NetworkTest : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.C))
 		{
 			GameManager.Instance.playerMode = GameManager.PlayerMode.Client;
-			StartCoroutine(netManager.JoinLocalBroadcast());
+			//StartCoroutine(netManager.JoinLocalBroadcast());
+			NetManager.Instance.JoinExistingRoom(inputField.text);
 		}
 	}
 }

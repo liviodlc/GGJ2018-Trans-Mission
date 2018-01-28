@@ -51,3 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f9a9accc53b894d91bae1d9868d3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  securityCameraRenderTexture: {fileID: 8400000, guid: 2f4a89aa88855b44fa21cd260060e858,
+    type: 2}
