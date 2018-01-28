@@ -18,7 +18,9 @@ public class SecurityCamera : MonoBehaviour {
 	private bool isReverse;
 	private Transform rotationBody;
 
-	void Start()
+	private Camera myCam;
+
+	void Awake()
 	{
 		rotationBody = transform.Find("CameraBody");
 		if(rotationBody == null)
@@ -28,6 +30,8 @@ public class SecurityCamera : MonoBehaviour {
 		}
 
 		StartMovement();
+
+		myCam = transform.GetComponentInChildren<Camera>();
 	}
 	
 	public void StartMovement()
@@ -45,7 +49,7 @@ public class SecurityCamera : MonoBehaviour {
         while(t <= 1)
         {
             t += Time.deltaTime/duration;
-            rotationBody.rotation = Quaternion.Euler(Vector3.Lerp(start, end, Mathf.SmoothStep(0,1,t)));
+            rotationBody.localRotation = Quaternion.Euler(Vector3.Lerp(start, end, Mathf.SmoothStep(0,1,t)));
             yield return new WaitForFixedUpdate();
         }
 
@@ -53,4 +57,9 @@ public class SecurityCamera : MonoBehaviour {
 		isReverse = !isReverse;
 		StartCoroutine(MoveCamera());
     }
+
+	public void SetCameraTargetTexture(RenderTexture target)
+	{
+		myCam.targetTexture = target;
+	}
 }
