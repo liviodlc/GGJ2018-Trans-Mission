@@ -9,6 +9,6 @@ public class CircuitPanel : InteractiveObject
 	{
 		rb.transform.localPosition += bump;
 		rb.isKinematic = false;
-		Debug.Log(rb.isKinematic + " " + rb.name);
+		gameObject.SetActive(false);
 	}
 }
