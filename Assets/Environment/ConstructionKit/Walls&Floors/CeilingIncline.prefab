@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4504781476006586}
   - component: {fileID: 33041343904363562}
   - component: {fileID: 23640089787516214}
+  - component: {fileID: 64902895256080598}
   m_Layer: 0
   m_Name: CeilingIncline
   m_TagString: Untagged
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1589568765778040}
+  m_Mesh: {fileID: 4300024, guid: 7bdf3ba67e8f0e94fa8fb56bf07b38a0, type: 3}
+--- !u!64 &64902895256080598
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1589568765778040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300024, guid: 7bdf3ba67e8f0e94fa8fb56bf07b38a0, type: 3}
