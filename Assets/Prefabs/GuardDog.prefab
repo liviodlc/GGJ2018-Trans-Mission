@@ -1742,7 +1742,7 @@ MonoBehaviour:
   WaitToLookTime: 1
   ThisAnim: {fileID: 95283318669891254}
   SniffSound: {fileID: 8300000, guid: 15139d750e181a54b866904233ea3a05, type: 3}
-  WalkingSound: {fileID: 8300000, guid: b5f84f095cf2cc047b28aedee20fba47, type: 3}
+  WalkingSound: {fileID: 8300000, guid: 30754fa3b1355de4880754d9f5b3e191, type: 3}
   BarkSounds:
   - {fileID: 8300000, guid: 4094b3867b88bf64c967c7106bfb624f, type: 3}
   - {fileID: 8300000, guid: 283962bec3f787346869d2f3788b814c, type: 3}
@@ -1943,6 +1943,6 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

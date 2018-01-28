@@ -57,6 +57,7 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	{
 		ThisNavAgent.speed = 0;
 		ThisAnim.SetBool("isWalking", false);
+		ThisAnim.SetBool("IsRunning", false);
 		ThisAudio.Stop();
 		yield return new WaitForSeconds(WaitTime);
 		IsLooking = false;
@@ -76,9 +77,10 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 		switch (key)
 		{
 			case "Sniff":
-				ThisAudio.PlayOneShot(SniffSound);
+				StartCoroutine(WaitingToSniff());
 				break;
 			case "Walking":
+				ThisAudio.loop = true;
 				ThisAudio.clip = WalkingSound;
 				ThisAudio.Play();
 				break;
@@ -93,6 +95,12 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 		}
 	}
 
+	private IEnumerator WaitingToSniff()
+	{
+		yield return new WaitForSeconds(1);
+		ThisAudio.PlayOneShot(SniffSound);
+	}
+
 	public void LookAtSomething(Transform Target)
 	{
 		LookTarget = Target;
@@ -104,6 +112,7 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 		PathComp.enabled = false;
 		ThisNavAgent.SetDestination(info.target.transform.position);
 		ThisAnim.SetTrigger("Bark");
+		ThisAnim.SetBool("IsRunning", true);
 		PlaySound("Bark");
 	}
 
@@ -115,7 +124,7 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 
 	public void OnTargetCameIntoRange(SightTargetInfo info) {}
 	public void OnTargetWentOutOfRange(SightTargetInfo info) {}
-	public void OnTargetDestroyed(SightTargetInfo info) {}
+	public void OnTargetDestroyed(SightTargetInfo info) { EventManager.TriggerEvent(GameEvent.GameOver); }
 	public void OnTryingToDetectTarget(SightTargetInfo info) {}
 	public void OnDetectingTarget(SightTargetInfo info) {}
 	public void OnStopDetectingTarget(SightTargetInfo info) {}
