@@ -65,6 +65,9 @@ public class VaultPasswordGenerator : MonoBehaviour {
             keys[i].doorRef = this.doorRef;
             texts[i].text = char.ToString(symbols[i]);
         }
+
     }
+
+    public string getSpam() { return spam; }
 
 }

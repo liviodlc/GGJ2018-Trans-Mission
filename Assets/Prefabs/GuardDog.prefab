@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 33072345195836892}
   - component: {fileID: 135159386408704286}
   - component: {fileID: 23854344295451626}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DogTrig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,6 +26,8 @@ public class AgentPlayer : NetworkBehaviour
 
 	private bool wasActionDown = false;
     private bool isCursorLocked = true;
+	private GameObject MainCollider;
+	private Vector3 ColliderSize;
 
 	public Animator animator;
 
@@ -94,6 +96,8 @@ public class AgentPlayer : NetworkBehaviour
 	{
 		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Client || testWithoutNetworking;
 		cam.gameObject.SetActive(isPlayerAgent);
+		MainCollider = transform.Find("Main Collider").gameObject;
+		ColliderSize = new Vector3(0, 1, 0);
 
 		animator = GetComponentInChildren<Animator> ();
 
