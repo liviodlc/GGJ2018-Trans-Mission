@@ -10,6 +10,7 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	public float LookSpeed;
 	public float WaitToLookTime;
 	public Animator ThisAnim;
+	public float RunSpeed;
 
 	[Header("Sounds")]
 	public AudioClip SniffSound;
@@ -110,6 +111,7 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 	public void OnDetectedTarget(SightTargetInfo info)
 	{
 		PathComp.enabled = false;
+		ThisNavAgent.speed = RunSpeed;
 		ThisNavAgent.SetDestination(info.target.transform.position);
 		ThisAnim.SetTrigger("Bark");
 		ThisAnim.SetBool("IsRunning", true);
@@ -124,7 +126,7 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 
 	public void OnTargetCameIntoRange(SightTargetInfo info) {}
 	public void OnTargetWentOutOfRange(SightTargetInfo info) {}
-	public void OnTargetDestroyed(SightTargetInfo info) { EventManager.TriggerEvent(GameEvent.GameOver); }
+	public void OnTargetDestroyed(SightTargetInfo info) {}
 	public void OnTryingToDetectTarget(SightTargetInfo info) {}
 	public void OnDetectingTarget(SightTargetInfo info) {}
 	public void OnStopDetectingTarget(SightTargetInfo info) {}
