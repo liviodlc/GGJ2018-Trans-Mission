@@ -6,19 +6,20 @@ using UnityEngine.Events;
 public static class GameEvent
 {
 	public static string HackPanel = "hackpanel-001";
-	public static string OpenFirstDoor = "open-first-door";
+	public static string OpenDoor = "open-door-";
 }
 
 public class EventManager : MonoBehaviour 
 {
     private static EventManager Instance;
 
-	void Start()
+	void Awake()
 	{
 		if(Instance != null)
 		{
 			Destroy(this.gameObject);
 		}
+        
 		Instance = this;
 		Init();
 	}

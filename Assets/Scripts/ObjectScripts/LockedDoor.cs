@@ -6,6 +6,7 @@ using UnityEngine;
 public class LockedDoor : MonoBehaviour {
 
     //Numeric ID
+    public int doorEventId;
     public int id;
     //Combinantion to unlock door
     public string combination;
@@ -29,6 +30,7 @@ public class LockedDoor : MonoBehaviour {
     // Use this for initialization
     void Start () {
         startPos = transform.position;
+        EventManager.StartListening(GameEvent.OpenDoor+doorEventId, OpenDoorEvent);
 	}
 	
 	// Update is called once per frame
@@ -74,6 +76,13 @@ public class LockedDoor : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
     }
+
+    void OpenDoorEvent()
+	{
+        Debug.Log("OPEN DOOR " + doorEventId);
+		StartCoroutine(openDoor());
+		EventManager.StopListening(GameEvent.OpenDoor+doorEventId, OpenDoorEvent);
+	}
 
     public int getId()
     { return id; }
