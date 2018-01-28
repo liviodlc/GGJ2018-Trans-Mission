@@ -69,12 +69,19 @@ public class AgentPlayer : NetworkBehaviour
         Cursor.lockState = isCursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
 	}
 
-	public void SetInteractiveObject(InteractiveObject target)
+	public void SelectInteractiveObject(InteractiveObject target)
 	{
 		hoveringObject = target;
-		canvas.SetActive(target != null);
-		if (target)
-			prompt.text = target.verb;
+		prompt.gameObject.SetActive(true);
+		prompt.text = target.verb;
+	}
+
+	public void DeselectInteractiveObject(InteractiveObject target)
+	{
+		if (hoveringObject != target)
+			return;
+		hoveringObject = null;
+		prompt.gameObject.SetActive(false);
 	}
 
     public void SelectInteractiveObject(InteractiveObject target)

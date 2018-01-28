@@ -61,22 +61,17 @@ public class GuardDog : MonoBehaviour, IObserverCallbacks
 
 	public void OnDetectedTarget(SightTargetInfo info)
 	{
-		Debug.Log("found " + info.target.name);
-		//StopAllCoroutines();
-		//PathComp.Stop();
 		PathComp.enabled = false;
-		//ThisNavAgent.isStopped = true;
-		//ThisNavAgent.ResetPath();
 		ThisNavAgent.SetDestination(info.target.transform.position);
 	}
 
 	public void OnUnDetectedTarget(SightTargetInfo info)
 	{
-		Debug.Log("can't see " + info.target.name);
+		PathComp.enabled = true;
 	}
 
-	public void OnTargetCameIntoRange(SightTargetInfo info) { Debug.Log(info.target.name + "is in range"); }
-	public void OnTargetWentOutOfRange(SightTargetInfo info) { Debug.Log(info.target.name + "is out of range"); }
+	public void OnTargetCameIntoRange(SightTargetInfo info) {}
+	public void OnTargetWentOutOfRange(SightTargetInfo info) {}
 	public void OnTargetDestroyed(SightTargetInfo info) {}
 	public void OnTryingToDetectTarget(SightTargetInfo info) {}
 	public void OnDetectingTarget(SightTargetInfo info) {}
