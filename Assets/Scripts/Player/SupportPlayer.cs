@@ -8,7 +8,10 @@ public class SupportPlayer : NetworkBehaviour {
 	SecurityCameraFinder securityCameraFinder;
 	DoctorUI doctorUI;
 
-	public string panelHackedText;
+	[Header("Sound")]
+	public AudioClip staticNoise;
+	public AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -56,10 +59,17 @@ public class SupportPlayer : NetworkBehaviour {
 		}
 
 		doctorUI.previousCameraBtn.onClick.AddListener(securityCameraFinder.PreviousCamera);
-		doctorUI.nextCameraBtn.onClick.AddListener(securityCameraFinder.NextCamera);		
+		doctorUI.nextCameraBtn.onClick.AddListener(securityCameraFinder.NextCamera);
+
+		doctorUI.previousCameraBtn.onClick.AddListener(PlayStaticNoise);
+		doctorUI.nextCameraBtn.onClick.AddListener(PlayStaticNoise);		
 	}
 
-
+	private void PlayStaticNoise()
+	{
+		Debug.Log("Static Noise");
+		audioSource.PlayOneShot(staticNoise);
+	}
 	public void PanelWasHacked()
 	{
 		EventManager.StopListening(GameEvent.HackPanel, PanelWasHacked);
