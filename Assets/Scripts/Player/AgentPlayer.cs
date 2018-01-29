@@ -173,12 +173,12 @@ public class AgentPlayer : NetworkBehaviour
 
 	private void Interact()
 	{
-		if (hoveringObject)
-			hoveringObject.Interact();
 		if (hoveringObject is WireTrigger)
 			if (((WireTrigger)hoveringObject).isCorrectwire)
-				CmdRaiseGlobalEvent(GameEvent.OpenDoor + "1");
+				CmdRaiseGlobalEvent(GameEvent.HackPanel);
 			else
 				CmdRaiseGlobalEvent(GameEvent.GameOver);
+		if (hoveringObject)
+			hoveringObject.Interact();
 	}
 }
