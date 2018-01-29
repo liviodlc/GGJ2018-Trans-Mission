@@ -12,6 +12,7 @@ public class FinishLine : InteractiveObject
 	public Color BadColor;
 	public float ColorChangeTime;
 	public Renderer ScreenRend;
+	public AudioClip WinSound;
 
 	private void Start()
 	{
@@ -26,6 +27,7 @@ public class FinishLine : InteractiveObject
 		{
 			StartCoroutine(ChangeColor(true));
 			playa.CmdRaiseGlobalEvent(GameEvent.GameWon);
+			AudioSource.PlayClipAtPoint(WinSound, transform.position);
 		}
 		else
 			StartCoroutine(ChangeColor(false));
