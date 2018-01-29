@@ -1842,7 +1842,7 @@ MonoBehaviour:
       m_Bits: 4294964223
     updateInterval: 0.2
     fieldOfViewDotValue: 0.25
-    viewingDistance: 15
+    viewingDistance: 10
     sampleCount: 10
     minVisibleFactor: 0.2
     instantlyDetectWhenTargetIsFullyVisible: 1
@@ -1905,7 +1905,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135914638446998262
 SphereCollider:
