@@ -1437,6 +1437,7 @@ GameObject:
   - component: {fileID: 20607267001903014}
   - component: {fileID: 124365582845369314}
   - component: {fileID: 81241525140973108}
+  - component: {fileID: 114692201640133726}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -1496,7 +1497,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 4702074323779022}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4051676157741466
 Transform:
@@ -3096,6 +3097,19 @@ MonoBehaviour:
   prompt: {fileID: 114314033142475784}
   testWithoutNetworking: 1
   animator: {fileID: 95149861365841074}
+  HasTreasure: 0
+--- !u!114 &114692201640133726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992106751277568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 7b082068fefab5b4db88c4c2c2046fe4, type: 2}
 --- !u!114 &114734811895253042
 MonoBehaviour:
   m_ObjectHideFlags: 1
