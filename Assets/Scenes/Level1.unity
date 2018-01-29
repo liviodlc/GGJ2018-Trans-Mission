@@ -2539,6 +2539,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c1af7ae284729c4992a4913aa63dc0f, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &191035196 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198558800358025132, guid: 2c1af7ae284729c4992a4913aa63dc0f,
+    type: 2}
+  m_PrefabInternal: {fileID: 191035195}
 --- !u!1001 &191608156
 Prefab:
   m_ObjectHideFlags: 0
@@ -8758,8 +8763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorEventId: 3
-  id: 0
-  combination: C98996
+  combination: 9896
   outputText: {fileID: 0}
   openOffset: {x: 0, y: 0, z: -3.74}
   openSpeed: 0
@@ -9140,8 +9144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorEventId: 4
-  id: 0
-  combination: 422D
+  combination: 4589
   outputText: {fileID: 0}
   openOffset: {x: -3.74, y: 0, z: 0}
   openSpeed: 0
@@ -9406,7 +9409,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: F
+  m_Text: P
 --- !u!222 &652814347
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11745,6 +11748,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4590141279396196, guid: 2c1af7ae284729c4992a4913aa63dc0f,
     type: 2}
   m_PrefabInternal: {fileID: 923813159}
+--- !u!198 &923813161 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198558800358025132, guid: 2c1af7ae284729c4992a4913aa63dc0f,
+    type: 2}
+  m_PrefabInternal: {fileID: 923813159}
 --- !u!4 &931748431 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4667581462951860, guid: feaeaf14139cffb4ca71b2eeaf1f82c0,
@@ -12426,8 +12434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorEventId: 1
-  id: 0
-  combination: F1353
+  combination: 9587
   outputText: {fileID: 0}
   openOffset: {x: -3.74, y: 0, z: 0}
   openSpeed: 0
@@ -20072,7 +20079,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verb: Cut Blue Wire
   wireEnd: {fileID: 1036582089}
-  ps: {fileID: 0}
+  ps: {fileID: 923813161}
+  isCorrectwire: 0
 --- !u!65 &1396796647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21232,8 +21240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorEventId: 6
-  id: 0
-  combination: AAVAA
+  combination: 6781
   outputText: {fileID: 0}
   openOffset: {x: -3.74, y: 0, z: 0}
   openSpeed: 0
@@ -21540,7 +21547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verb: Cut Yellow Wire
   wireEnd: {fileID: 444210678}
-  ps: {fileID: 0}
+  ps: {fileID: 191035196}
+  isCorrectwire: 0
 --- !u!65 &1557897996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22275,8 +22283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorEventId: 5
-  id: 0
-  combination: 1F2F
+  combination: 6781
   outputText: {fileID: 0}
   openOffset: {x: 0, y: 0, z: -3.74}
   openSpeed: 0
@@ -23680,6 +23687,11 @@ Prefab:
 --- !u!4 &1722538719 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4590141279396196, guid: 2c1af7ae284729c4992a4913aa63dc0f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1722538718}
+--- !u!198 &1722538720 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198558800358025132, guid: 2c1af7ae284729c4992a4913aa63dc0f,
     type: 2}
   m_PrefabInternal: {fileID: 1722538718}
 --- !u!4 &1722542209 stripped
@@ -25401,8 +25413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorEventId: 2
-  id: 0
-  combination: B2265
+  combination: 2265
   outputText: {fileID: 0}
   openOffset: {x: 0, y: 0, z: 3.74}
   openSpeed: 0
@@ -27146,7 +27157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verb: Cut Red Wire
   wireEnd: {fileID: 1425562413}
-  ps: {fileID: 0}
+  ps: {fileID: 1722538720}
+  isCorrectwire: 0
 --- !u!65 &1984784640
 BoxCollider:
   m_ObjectHideFlags: 0

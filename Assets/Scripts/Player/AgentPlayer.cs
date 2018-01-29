@@ -3,6 +3,8 @@ using UnityEngine.Networking;
 
 public class AgentPlayer : NetworkBehaviour
 {
+	public static AgentPlayer me { get; private set; }
+
 	[Header("Controls")]
 	public float moveSpeed;
 	public float turnSpeed;
@@ -15,9 +17,6 @@ public class AgentPlayer : NetworkBehaviour
 	public Rigidbody rb;
 	public GameObject canvas;
 	public TMPro.TextMeshProUGUI prompt;
-
-	[Header("Debug")]
-	public bool testWithoutNetworking = false;
 
 	private float turn = 0;
 	private float nod = 0;
@@ -95,7 +94,7 @@ public class AgentPlayer : NetworkBehaviour
 
 	private void Start()
 	{
-		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Client || testWithoutNetworking;
+		isPlayerAgent = GameManager.Instance.playerMode == GameManager.PlayerMode.Client;
 		cam.gameObject.SetActive(isPlayerAgent);
 		MainCollider = transform.Find("Main Collider").gameObject;
 		ColliderSize = new Vector3(0, 1, 0);
@@ -103,7 +102,10 @@ public class AgentPlayer : NetworkBehaviour
 		animator = GetComponentInChildren<Animator>();
 
 		if (isPlayerAgent)
+		{
 			Cursor.lockState = CursorLockMode.Locked;
+			me = this;
+		}
 	}
 
 	private void Update()
@@ -173,5 +175,10 @@ public class AgentPlayer : NetworkBehaviour
 	{
 		if (hoveringObject)
 			hoveringObject.Interact();
+		if(hoveringObject is WireTrigger)
+			if(((WireTrigger)hoveringObject).isCorrectwire)
+				CmdRaiseGlobalEvent(GameEvent.OpenDoor + "1");
+			else
+				CmdRaiseGlobalEvent(GameEvent.GameOver);
 	}
 }

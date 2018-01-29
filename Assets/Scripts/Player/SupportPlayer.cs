@@ -32,6 +32,7 @@ public class SupportPlayer : NetworkBehaviour {
 		else
 		{
 			doctorUI.gameObject.SetActive(false);
+			GetComponent<AudioListener>().enabled = false;
 		}
 		
 	}
