@@ -11,6 +11,8 @@ public class PickupObject : InteractiveObject {
 
     public Collider mainCollider;
 
+    public bool isMotiveComplete = false;
+
     InteractionCollider IC;
     string originalVerb;
 

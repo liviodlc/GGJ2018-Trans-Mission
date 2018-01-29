@@ -7,7 +7,6 @@ public class MotiveManager : Singleton<MotiveManager> {
 
     public int agentMotivesComplete = 0;
     public int doctorMotivesComplete = 0;
-    public GameObject player;
 
     void Start()
     {

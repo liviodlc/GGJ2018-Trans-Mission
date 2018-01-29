@@ -39,8 +39,7 @@ public class NetManager : NetworkManager
 	private List<string> previousRoomNameAttempts;
 
 
-
-	void Start () {
+    void Start () {
 
         if(Instance != null)
         {
