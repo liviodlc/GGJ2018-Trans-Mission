@@ -396,11 +396,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4925083230059328, guid: b8e50f485f3f41d4da901bf7f0da40a8,
     type: 2}
   m_PrefabInternal: {fileID: 266431640}
---- !u!198 &21170293 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198558800358025132, guid: 2c1af7ae284729c4992a4913aa63dc0f,
-    type: 2}
-  m_PrefabInternal: {fileID: 191035195}
 --- !u!1001 &21693368
 Prefab:
   m_ObjectHideFlags: 0
@@ -11587,11 +11582,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4590141279396196, guid: 2c1af7ae284729c4992a4913aa63dc0f,
     type: 2}
   m_PrefabInternal: {fileID: 923813159}
---- !u!198 &923813161 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198558800358025132, guid: 2c1af7ae284729c4992a4913aa63dc0f,
-    type: 2}
-  m_PrefabInternal: {fileID: 923813159}
 --- !u!4 &931748431 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4667581462951860, guid: feaeaf14139cffb4ca71b2eeaf1f82c0,
@@ -19919,7 +19909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verb: Cut Blue Wire
   wireEnd: {fileID: 1036582089}
-  ps: {fileID: 923813161}
+  ps: {fileID: 0}
 --- !u!65 &1396796647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21387,7 +21377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verb: Cut Yellow Wire
   wireEnd: {fileID: 444210678}
-  ps: {fileID: 21170293}
+  ps: {fileID: 0}
 --- !u!65 &1557897996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23527,11 +23517,6 @@ Prefab:
 --- !u!4 &1722538719 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4590141279396196, guid: 2c1af7ae284729c4992a4913aa63dc0f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1722538718}
---- !u!198 &1722538720 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198558800358025132, guid: 2c1af7ae284729c4992a4913aa63dc0f,
     type: 2}
   m_PrefabInternal: {fileID: 1722538718}
 --- !u!4 &1722542209 stripped
@@ -26998,7 +26983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verb: Cut Red Wire
   wireEnd: {fileID: 1425562413}
-  ps: {fileID: 1722538720}
+  ps: {fileID: 0}
 --- !u!65 &1984784640
 BoxCollider:
   m_ObjectHideFlags: 0
