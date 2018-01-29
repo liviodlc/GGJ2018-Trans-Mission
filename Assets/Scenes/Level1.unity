@@ -19985,7 +19985,7 @@ MonoBehaviour:
   verb: Cut Blue Wire
   wireEnd: {fileID: 1036582089}
   ps: {fileID: 923813161}
-  isCorrectwire: 0
+  isCorrectwire: 1
 --- !u!65 &1396796647
 BoxCollider:
   m_ObjectHideFlags: 0
