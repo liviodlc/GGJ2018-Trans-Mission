@@ -104,8 +104,8 @@ public class AgentPlayer : NetworkBehaviour
 		if (isPlayerAgent)
 		{
 			Cursor.lockState = CursorLockMode.Locked;
-			me = this;
 		}
+		me = this;
 	}
 
 	private void Update()
@@ -175,8 +175,8 @@ public class AgentPlayer : NetworkBehaviour
 	{
 		if (hoveringObject)
 			hoveringObject.Interact();
-		if(hoveringObject is WireTrigger)
-			if(((WireTrigger)hoveringObject).isCorrectwire)
+		if (hoveringObject is WireTrigger)
+			if (((WireTrigger)hoveringObject).isCorrectwire)
 				CmdRaiseGlobalEvent(GameEvent.OpenDoor + "1");
 			else
 				CmdRaiseGlobalEvent(GameEvent.GameOver);
