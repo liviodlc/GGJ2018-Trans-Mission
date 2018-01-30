@@ -2537,7 +2537,8 @@ Prefab:
       propertyPath: randomSeed
       value: -1474255328
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2c1af7ae284729c4992a4913aa63dc0f, type: 2}
   m_IsPrefabParent: 0
 --- !u!198 &191035196 stripped
@@ -11644,7 +11645,8 @@ Prefab:
       propertyPath: m_Name
       value: Sparks (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2c1af7ae284729c4992a4913aa63dc0f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &923813160 stripped
@@ -19982,7 +19984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0a986cb4d55654fb5caa88a7e6123b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verb: Cut Blue Wire
+  verb: Cut Blue Wire (Press E)
   wireEnd: {fileID: 1036582089}
   ps: {fileID: 923813161}
   isCorrectwire: 1
@@ -21450,7 +21452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0a986cb4d55654fb5caa88a7e6123b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verb: Cut Yellow Wire
+  verb: Cut Yellow Wire (press E)
   wireEnd: {fileID: 444210678}
   ps: {fileID: 191035196}
   isCorrectwire: 0
@@ -21892,7 +21894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c023aaed84da3f24a9bc98a3da69216e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verb: Open Panel
+  verb: Open Panel (press E)
   rb: {fileID: 1771098807}
   bump: {x: 0, y: 0, z: -0.002}
   nextTrigger: {fileID: 1321454277}
@@ -23586,7 +23588,8 @@ Prefab:
       propertyPath: m_Name
       value: Sparks (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2c1af7ae284729c4992a4913aa63dc0f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1722538719 stripped
@@ -27060,7 +27063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0a986cb4d55654fb5caa88a7e6123b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verb: Cut Red Wire
+  verb: Cut Red Wire (press E)
   wireEnd: {fileID: 1425562413}
   ps: {fileID: 1722538720}
   isCorrectwire: 0
